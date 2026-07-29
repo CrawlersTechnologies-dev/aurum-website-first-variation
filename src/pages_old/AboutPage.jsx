@@ -60,7 +60,7 @@ export default function AboutPage() {
         lead="AURUM was built by a team of experienced traders who understand the real challenges of trading. With over 20 years of experience across banking, hedge funds, quantitative research, and financial markets, our team has seen what makes traders successful.We learned that long-term success is not just about having a good strategy it's about following it with discipline. That's why AURUM was created to help traders execute their strategy with consistency, confidence, and without emotional decisions."
       />
 
-      <section className="certs-section">
+      <section className="section" style={{ padding: '24px 0' }}>
         <div className="container certs-strip reveal">
           <span>KHDA Approved</span>
           <span aria-hidden="true">·</span>
