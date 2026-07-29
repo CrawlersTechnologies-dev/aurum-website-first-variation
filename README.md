@@ -53,19 +53,18 @@ The application is structured into the following pages:
 
 ```
 aurum-diamond-website-updated/
-└─ next-app/
-   ├─ src/
-   │  ├─ app/                 # App Router (pages & API endpoints)
-   │  │  ├─ api/               # Serverless API routes (contact, Stripe webhook, etc.)
-   │  │  ├─ page.js            # Home Page
-   │  │  └─ ...
-   │  ├─ components/          # Reusable React UI components (Hero, Navbar, Pricing)
-   │  ├─ data/                # Static copy & content (content.js)
-   │  └─ lib/                 # Core server libraries (email, pricing, zoho)
-   ├─ public/                 # Static assets (images, logos)
-   ├─ netlify.toml            # Netlify deployment configuration
-   ├─ next.config.mjs         # Next.js configurations
-   └─ package.json
+├─ src/
+│  ├─ app/                 # App Router (pages & API endpoints)
+│  │  ├─ api/               # Serverless API routes (contact, Stripe webhook, etc.)
+│  │  ├─ page.js            # Home Page
+│  │  └─ ...
+│  ├─ components/          # Reusable React UI components (Hero, Navbar, Pricing)
+│  ├─ data/                # Static copy & content (content.js)
+│  └─ lib/                 # Core server libraries (email, pricing, zoho)
+├─ public/                 # Static assets (images, logos)
+├─ netlify.toml            # Netlify deployment configuration
+├─ next.config.mjs         # Next.js configurations
+└─ package.json
 ```
 
 ---
@@ -73,7 +72,7 @@ aurum-diamond-website-updated/
 ## Running Locally
 
 ### 1. Configuration
-Create a `.env.local` file inside the `next-app` folder with your credentials:
+Create a `.env.local` file in the root folder with your credentials:
 
 ```env
 # Stripe Keys
