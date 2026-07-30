@@ -72,7 +72,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section bgv-white about-stats-section">
         <div className="container about-stats reveal">
           {stats.map((s) => (
             <div className="about-stats__item" key={s.l}>

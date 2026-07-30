@@ -246,7 +246,7 @@
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 56px;
-  align-items: stretch;
+  align-items: center;
 }
 
 .vps-left {

@@ -303,14 +303,14 @@ export default function SetupGuidePage() {
                     </div>
                   ))}
                 </div>
-                <div className="vps-providers__note">
+                {/* <div className="vps-providers__note">
                   <IconInfo className="vps-providers__note-icon" />
                   <p>
                     Diamond plan holders receive step-by-step VPS setup guidance from our team
                     during onboarding. We'll help you connect, install MetaTrader, and move AURUM
                     across to your VPS.
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

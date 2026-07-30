@@ -114,6 +114,16 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
+  padding: 28px;
+  background: linear-gradient(155deg, var(--navy-soft) 0%, var(--navy-deep) 100%);
+  border: 1px solid var(--navy-line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease;
+}
+
+.profitable__points li:hover {
+  transform: translateY(-4px);
 }
 
 .profitable__point-body {
@@ -127,7 +137,7 @@
   font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--white);
   letter-spacing: -0.01em;
   line-height: 1.35;
 }
@@ -135,14 +145,12 @@
 .profitable__point-text {
   font-size: 0.95rem;
   line-height: 1.7;
-  color: var(--ink-muted);
-  opacity: 0.78;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .bgv-white .profitable__point-text,
 .bgv-grey .profitable__point-text {
-  color: var(--ink-muted-dark);
-  opacity: 0.78;
+  color: rgba(255, 255, 255, 0.75); /* Card is always dark now */
 }
 
 .profitable__num {
@@ -151,8 +159,8 @@
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--gold);
-  background: var(--gold-dim);
-  border: 1px solid rgba(25, 208, 95, 0.45);
+  background: rgba(25, 208, 95, 0.1);
+  border: 1px solid rgba(25, 208, 95, 0.3);
   border-radius: 50%;
   width: 38px;
   height: 38px;
