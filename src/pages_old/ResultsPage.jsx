@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import PageHero from "./PageHero";
 import Link from 'next/link';
 import {
@@ -67,6 +68,17 @@ function MfxCarousel() {
     return () => clearInterval(id);
   }, [index, paused, goTo, lightboxImg]);
 
+  useEffect(() => {
+    if (lightboxImg) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [lightboxImg]);
+
   const slide = MFX_SLIDES[index];
 
   return (
@@ -115,14 +127,47 @@ function MfxCarousel() {
         </div>
       </div>
 
-      {lightboxImg && (
-        <div className="mfx-lightbox" onClick={() => setLightboxImg(null)}>
-          <button className="mfx-lightbox__close" aria-label="Close" onClick={() => setLightboxImg(null)}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </button>
-          <img src={lightboxImg} alt="Enlarged chart" className="mfx-lightbox__img" />
-        </div>
-      )}
+      {lightboxImg && (() => {
+        const currentIdx = MFX_SLIDES.findIndex(s => s.image === lightboxImg);
+        const goNext = (e) => {
+          e.stopPropagation();
+          setLightboxImg(MFX_SLIDES[(currentIdx + 1) % total].image);
+        };
+        const goPrev = (e) => {
+          e.stopPropagation();
+          setLightboxImg(MFX_SLIDES[(currentIdx - 1 + total) % total].image);
+        };
+        
+        const lightboxNode = (
+          <div className="mfx-lightbox" onClick={() => setLightboxImg(null)}>
+            <button
+              type="button"
+              className="mfx-lightbox__arrow mfx-lightbox__arrow--prev"
+              onClick={goPrev}
+              aria-label="Previous image"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <img src={lightboxImg} alt="Enlarged chart" className="mfx-lightbox__img" onClick={(e) => e.stopPropagation()} />
+            <button
+              type="button"
+              className="mfx-lightbox__arrow mfx-lightbox__arrow--next"
+              onClick={goNext}
+              aria-label="Next image"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button className="mfx-lightbox__close" aria-label="Close" onClick={() => setLightboxImg(null)}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          </div>
+        );
+        return typeof document !== "undefined" ? createPortal(lightboxNode, document.body) : null;
+      })()}
     </>
   );
 }

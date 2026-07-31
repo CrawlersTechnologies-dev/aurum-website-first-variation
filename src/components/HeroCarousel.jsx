@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { heroCarouselSlides } from "../data/content";
 import "./HeroCarousel.css";
 
@@ -32,6 +33,17 @@ export default function HeroCarousel() {
     const id = setInterval(() => goTo(index + 1), 5200);
     return () => clearInterval(id);
   }, [index, paused, lightboxImg, goTo]);
+
+  useEffect(() => {
+    if (lightboxImg) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [lightboxImg]);
 
   const slide = heroCarouselSlides[index];
 
@@ -107,26 +119,59 @@ export default function HeroCarousel() {
         )}
       </div>
 
-      {lightboxImg && (
-        <div className="hero-lightbox" onClick={() => setLightboxImg(null)}>
-          <img
-            src={lightboxImg}
-            alt="Enlarged view"
-            className="hero-lightbox__img"
-            onClick={(e) => e.stopPropagation()}
-          />
-          <button
-            type="button"
-            className="hero-lightbox__close"
-            onClick={() => setLightboxImg(null)}
-            aria-label="Close"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </div>
-      )}
+      {lightboxImg && (() => {
+        const currentIdx = heroCarouselSlides.findIndex(s => s.image === lightboxImg);
+        const goNext = (e) => {
+          e.stopPropagation();
+          setLightboxImg(heroCarouselSlides[(currentIdx + 1) % total].image);
+        };
+        const goPrev = (e) => {
+          e.stopPropagation();
+          setLightboxImg(heroCarouselSlides[(currentIdx - 1 + total) % total].image);
+        };
+        
+        const lightboxNode = (
+          <div className="hero-lightbox" onClick={() => setLightboxImg(null)}>
+            <button
+              type="button"
+              className="hero-lightbox__arrow hero-lightbox__arrow--prev"
+              onClick={goPrev}
+              aria-label="Previous image"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <img
+              src={lightboxImg}
+              alt="Enlarged view"
+              className="hero-lightbox__img"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button
+              type="button"
+              className="hero-lightbox__arrow hero-lightbox__arrow--next"
+              onClick={goNext}
+              aria-label="Next image"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              className="hero-lightbox__close"
+              onClick={() => setLightboxImg(null)}
+              aria-label="Close"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        );
+        return typeof document !== "undefined" ? createPortal(lightboxNode, document.body) : null;
+      })()}
     </div>
   );
 }
