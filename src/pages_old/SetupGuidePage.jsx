@@ -8,6 +8,10 @@ import "./SetupGuidePage.css";
 const SetupVideoDisplay = ({ label, src, poster }) => {
   const [playing, setPlaying] = useState(false);
 
+  const parts = label.split('(');
+  const mainText = parts[0].trim();
+  const bracketText = parts[1] ? `(${parts[1]}` : null;
+
   return (
     <div className="setup-video-card">
       {playing ? (
@@ -28,7 +32,15 @@ const SetupVideoDisplay = ({ label, src, poster }) => {
             </svg>
           </button>
           <div className="setup-video-card__meta">
-            <span className="setup-video-card__label">{label}</span>
+            <span className="setup-video-card__label">
+              <span className="setup-video-card__label-main">{mainText}</span>
+              {bracketText && (
+                <>
+                  <span className="setup-video-card__label-space"> </span>
+                  <span className="setup-video-card__label-bracket">{bracketText}</span>
+                </>
+              )}
+            </span>
           </div>
         </div>
       )}

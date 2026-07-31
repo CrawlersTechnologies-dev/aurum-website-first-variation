@@ -195,6 +195,24 @@
   backdrop-filter: blur(8px);
 }
 
+.setup-video-card__label-space {
+  display: inline;
+}
+
+.setup-video-card__label-bracket {
+  display: inline;
+}
+
+@media (max-width: 640px) {
+  .setup-video-card__label-space {
+    display: none;
+  }
+  .setup-video-card__label-bracket {
+    display: block;
+    margin-top: 2px;
+  }
+}
+
 .video-placeholder__label {
   font-family: var(--font-display);
   font-size: 0.9rem;

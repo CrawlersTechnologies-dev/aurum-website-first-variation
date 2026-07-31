@@ -20,6 +20,7 @@ function MyfxbookMark() {
 export default function HeroCarousel() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [lightboxImg, setLightboxImg] = useState(null);
   const total = heroCarouselSlides.length;
 
   const goTo = useCallback((i) => {
@@ -27,10 +28,10 @@ export default function HeroCarousel() {
   }, [total]);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || lightboxImg) return;
     const id = setInterval(() => goTo(index + 1), 5200);
     return () => clearInterval(id);
-  }, [index, paused, goTo]);
+  }, [index, paused, lightboxImg, goTo]);
 
   const slide = heroCarouselSlides[index];
 
@@ -55,6 +56,7 @@ export default function HeroCarousel() {
               title={s.titleAttr || s.alt || s.title}
               className={`hero-carousel__img ${i === index ? "is-active" : ""}`}
               loading={i === 0 ? "eager" : "lazy"}
+              onClick={() => setLightboxImg(s.image)}
             />
           ))}
 
@@ -104,6 +106,27 @@ export default function HeroCarousel() {
           </a>
         )}
       </div>
+
+      {lightboxImg && (
+        <div className="hero-lightbox" onClick={() => setLightboxImg(null)}>
+          <img
+            src={lightboxImg}
+            alt="Enlarged view"
+            className="hero-lightbox__img"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            type="button"
+            className="hero-lightbox__close"
+            onClick={() => setLightboxImg(null)}
+            aria-label="Close"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
