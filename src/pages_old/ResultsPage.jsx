@@ -54,6 +54,7 @@ const MFX_SLIDES = [
 function MfxCarousel() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [lightboxImg, setLightboxImg] = useState(null);
   const total = MFX_SLIDES.length;
 
   const goTo = useCallback((i) => {
@@ -61,57 +62,68 @@ function MfxCarousel() {
   }, [total]);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || lightboxImg) return;
     const id = setInterval(() => goTo(index + 1), 4500);
     return () => clearInterval(id);
-  }, [index, paused, goTo]);
+  }, [index, paused, goTo, lightboxImg]);
 
   const slide = MFX_SLIDES[index];
 
   return (
-    <div
-      className="mfx-carousel-v2"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <div className="mfx-carousel-v2__frame">
-        {MFX_SLIDES.map((s, i) => (
-          <img
-            key={s.image}
-            src={s.image}
-            alt={s.alt}
-            title={s.titleAttr}
-            className={`mfx-carousel-v2__img ${i === index ? 'is-active' : ''}`}
-          />
-        ))}
-        <span className="mfx-carousel-v2__badge">{slide.badge}</span>
-        <button type="button" className="mfx-carousel-v2__arrow mfx-carousel-v2__arrow--prev" onClick={() => goTo(index - 1)} aria-label="Previous">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-        </button>
-        <button type="button" className="mfx-carousel-v2__arrow mfx-carousel-v2__arrow--next" onClick={() => goTo(index + 1)} aria-label="Next">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-        </button>
-      </div>
+    <>
+      <div
+        className="mfx-carousel-v2"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div className="mfx-carousel-v2__frame">
+          {MFX_SLIDES.map((s, i) => (
+            <img
+              key={s.image}
+              src={s.image}
+              alt={s.alt}
+              title={s.titleAttr}
+              className={`mfx-carousel-v2__img ${i === index ? 'is-active' : ''}`}
+              onClick={() => setLightboxImg(s.image)}
+            />
+          ))}
+          <span className="mfx-carousel-v2__badge">{slide.badge}</span>
+          <button type="button" className="mfx-carousel-v2__arrow mfx-carousel-v2__arrow--prev" onClick={() => goTo(index - 1)} aria-label="Previous">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
+          <button type="button" className="mfx-carousel-v2__arrow mfx-carousel-v2__arrow--next" onClick={() => goTo(index + 1)} aria-label="Next">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
+        </div>
 
-      <div className="mfx-carousel-v2__body" key={slide.title}>
+        <div className="mfx-carousel-v2__body" key={slide.title}>
+          <div className="mfx-carousel-v2__copy">
+            <h3 className="mfx-carousel-v2__title">{slide.title}</h3>
+            <p className="mfx-carousel-v2__desc">{slide.desc}</p>
+          </div>
+        </div>
 
-        <div className="mfx-carousel-v2__copy">
-          <h3 className="mfx-carousel-v2__title">{slide.title}</h3>
-          <p className="mfx-carousel-v2__desc">{slide.desc}</p>
+        <div className="mfx-carousel-v2__dots">
+          {MFX_SLIDES.map((_, i) => (
+            <button
+              key={i}
+              className={`mfx-carousel-v2__dot ${i === index ? 'is-active' : ''}`}
+              onClick={() => goTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
         </div>
       </div>
 
-      <div className="mfx-carousel-v2__dots">
-        {MFX_SLIDES.map((_, i) => (
-          <button
-            key={i}
-            className={`mfx-carousel-v2__dot ${i === index ? 'is-active' : ''}`}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
-    </div>
+      {lightboxImg && (
+        <div className="mfx-lightbox" onClick={() => setLightboxImg(null)}>
+          <button className="mfx-lightbox__close" aria-label="Close" onClick={() => setLightboxImg(null)}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
+          <img src={lightboxImg} alt="Enlarged chart" className="mfx-lightbox__img" />
+        </div>
+      )}
+    </>
   );
 }
 

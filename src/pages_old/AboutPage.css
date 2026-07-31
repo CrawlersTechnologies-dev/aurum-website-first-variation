@@ -230,9 +230,21 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
+  .founder-card {
+    padding: 24px 16px;
+  }
   .founder-card__layout {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+  .founder-card__eyebrow-title {
+    text-align: center;
+  }
+  .founder-card__title,
+  .founder-card__org {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
   .founder-card__photo {
     width: 160px;

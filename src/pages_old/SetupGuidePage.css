@@ -171,19 +171,26 @@
   position: absolute;
   left: 18px;
   bottom: 16px;
+  right: 18px;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .setup-video-card__label {
+  display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-align: center;
   text-transform: uppercase;
   color: var(--gold);
   background: rgba(13, 20, 56, 0.85);
   padding: 6px 12px;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid rgba(25, 208, 95, 0.35);
   backdrop-filter: blur(8px);
 }
