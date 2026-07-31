@@ -1,12 +1,19 @@
 import Stripe from "stripe";
 import { pricingTiers } from "@/lib/pricing";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2024-12-18.acacia",
-});
-
 export async function POST(request) {
   try {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return Response.json(
+        { error: "Stripe configuration error: Missing secret key. Did you restart your server after adding keys?" },
+        { status: 500 }
+      );
+    }
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: "2024-12-18.acacia",
+    });
+
     const body = await request.json();
     const { planId } = body;
 

@@ -22,6 +22,7 @@ export default function HeroCarousel() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [lightboxImg, setLightboxImg] = useState(null);
+  const [isZoomed, setIsZoomed] = useState(false);
   const total = heroCarouselSlides.length;
 
   const goTo = useCallback((i) => {
@@ -39,6 +40,7 @@ export default function HeroCarousel() {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      setIsZoomed(false); // Reset zoom when closed
     }
     return () => {
       document.body.style.overflow = '';
@@ -124,50 +126,57 @@ export default function HeroCarousel() {
         const goNext = (e) => {
           e.stopPropagation();
           setLightboxImg(heroCarouselSlides[(currentIdx + 1) % total].image);
+          setIsZoomed(false);
         };
         const goPrev = (e) => {
           e.stopPropagation();
           setLightboxImg(heroCarouselSlides[(currentIdx - 1 + total) % total].image);
+          setIsZoomed(false);
+        };
+        
+        const closeLightbox = () => {
+          setLightboxImg(null);
+        };
+        
+        const toggleZoom = (e) => {
+          e.stopPropagation();
+          setIsZoomed(!isZoomed);
         };
         
         const lightboxNode = (
-          <div className="hero-lightbox" onClick={() => setLightboxImg(null)}>
-            <button
-              type="button"
-              className="hero-lightbox__arrow hero-lightbox__arrow--prev"
-              onClick={goPrev}
-              aria-label="Previous image"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
-                <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <img
-              src={lightboxImg}
-              alt="Enlarged view"
-              className="hero-lightbox__img"
-              onClick={(e) => e.stopPropagation()}
-            />
-            <button
-              type="button"
-              className="hero-lightbox__arrow hero-lightbox__arrow--next"
-              onClick={goNext}
-              aria-label="Next image"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
-                <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              className="hero-lightbox__close"
-              onClick={() => setLightboxImg(null)}
-              aria-label="Close"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+          <div className={`hero-lightbox ${isZoomed ? 'is-zoomed-view' : ''}`} onClick={closeLightbox}>
+            <div className="hero-lightbox__toolbar" onClick={e => e.stopPropagation()}>
+              <button type="button" className="hero-lightbox__tool-btn" onClick={toggleZoom} aria-label="Toggle Zoom">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  {isZoomed ? <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM8 11h6"/> : <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM11 8v6m-3-3h6"/>}
+                </svg>
+              </button>
+              <button type="button" className="hero-lightbox__tool-btn" onClick={goPrev} aria-label="Previous image">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                  <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button type="button" className="hero-lightbox__tool-btn" onClick={goNext} aria-label="Next image">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                  <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button type="button" className="hero-lightbox__tool-btn" onClick={closeLightbox} aria-label="Close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            
+            <div className="hero-lightbox__img-container">
+              <img
+                src={lightboxImg}
+                alt="Enlarged view"
+                className={`hero-lightbox__img ${isZoomed ? 'is-zoomed' : ''}`}
+                onClick={(e) => { e.stopPropagation(); toggleZoom(e); }}
+                title="Click to toggle zoom"
+              />
+            </div>
           </div>
         );
         return typeof document !== "undefined" ? createPortal(lightboxNode, document.body) : null;
