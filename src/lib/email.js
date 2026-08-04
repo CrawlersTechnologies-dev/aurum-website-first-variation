@@ -93,8 +93,7 @@ export async function sendPaymentSuccessEmail({
     .success-badge { background: rgba(25, 208, 95, 0.1); border: 1px solid rgba(25, 208, 95, 0.25); color: #19d05f; border-radius: 8px; padding: 14px 20px; font-size: 0.95rem; margin-bottom: 30px; font-weight: 500; text-align: center; }
     .details-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
     .details-table td { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.95rem; color: #d1d5db; }
-    .details-table td:first-child { color: #9ca3af; width: 45%; }
-    .details-table td:last-child { font-weight: 500; text-align: right; color: #ffffff; }
+    .details-table td { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.95rem; color: #d1d5db; }
     .total-row td { border-bottom: none; font-size: 1.1rem; font-weight: 700; color: #19d05f; }
     .cta-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 30px 24px; margin: 30px 0; text-align: center; }
     .cta-section p { margin: 0 0 20px; color: #d1d5db; font-size: 0.95rem; line-height: 1.6; }
@@ -118,12 +117,12 @@ export async function sendPaymentSuccessEmail({
       <div class="success-badge">✅ Your payment has been successfully completed. Thank you for choosing AURUM EA!</div>
       <p style="text-align:center;">Here is a summary of your purchase:</p>
       <table class="details-table">
-        <tr><td>Plan</td><td>${planName} Plan</td></tr>
-        <tr><td>Base Price</td><td>${currencySymbol}${basePrice.toLocaleString()}</td></tr>
-        ${vatAmount > 0 ? `<tr><td>VAT (${vatPercentage}%)</td><td>${currencySymbol}${vatAmount.toLocaleString()}</td></tr>` : ""}
-        <tr class="total-row"><td>Total Paid</td><td>${currencySymbol}${amount.toLocaleString()} ${currency}</td></tr>
-        <tr><td>Payment ID</td><td style="font-size:0.82rem;font-family:monospace;color:#9ca3af;">${stripePaymentId || stripeSessionId}</td></tr>
-        ${invoiceNumber ? `<tr><td>Invoice</td><td>${invoiceNumber}</td></tr>` : ""}
+        <tr><td style="color:#9ca3af;width:45%;">Plan</td><td style="font-weight:500;text-align:right;color:#ffffff;">${planName} Plan</td></tr>
+        <tr><td style="color:#9ca3af;width:45%;">Base Price</td><td style="font-weight:500;text-align:right;color:#ffffff;">${currencySymbol}${basePrice.toLocaleString()}</td></tr>
+        ${vatAmount > 0 ? `<tr><td style="color:#9ca3af;width:45%;">VAT (${vatPercentage}%)</td><td style="font-weight:500;text-align:right;color:#ffffff;">${currencySymbol}${vatAmount.toLocaleString()}</td></tr>` : ""}
+        <tr class="total-row"><td style="color:#9ca3af;width:45%;">Total Paid</td><td style="font-weight:700;text-align:right;color:#19d05f;">${currencySymbol}${amount.toLocaleString()} ${currency}</td></tr>
+        <tr><td style="color:#9ca3af;width:45%;">Payment ID</td><td style="font-size:0.82rem;font-family:monospace;color:#9ca3af;text-align:right;font-weight:500;">${stripePaymentId || stripeSessionId}</td></tr>
+        ${invoiceNumber ? `<tr><td style="color:#9ca3af;width:45%;">Invoice</td><td style="font-weight:500;text-align:right;color:#ffffff;">${invoiceNumber}</td></tr>` : ""}
       </table>
 
       <div class="cta-section">
