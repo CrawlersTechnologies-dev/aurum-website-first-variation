@@ -80,33 +80,41 @@ export async function sendPaymentSuccessEmail({
   <meta charset="UTF-8" />
   <title>Payment Confirmed – AURUM EA</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f6f9; margin: 0; padding: 0; }
-    .wrapper { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
-    .header { background: #0a1628; padding: 32px 40px; text-align: center; }
-    .header h1 { color: #c8a951; margin: 0; font-size: 1.6rem; letter-spacing: 0.05em; }
-    .header p { color: rgba(255,255,255,0.7); margin: 8px 0 0; font-size: 0.9rem; }
-    .body { padding: 40px; }
-    .success-badge { background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; border-radius: 8px; padding: 12px 20px; font-size: 0.95rem; margin-bottom: 24px; }
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #050814; margin: 0; padding: 0; }
+    .wrapper { max-width: 600px; margin: 40px auto; background: #0a0f24; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    .header { background: #070a1a; padding: 32px 40px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .header-logo { display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; text-decoration: none; }
+    .header-logo img { height: 45px; margin-right: 12px; }
+    .header-logo-text { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 700; color: #ffffff; letter-spacing: 1px; }
+    .header-logo-text span { color: #19d05f; font-weight: 400; font-size: 14px; letter-spacing: 2px; margin-left: 4px; }
+    .header h1 { color: #ffffff; margin: 0; font-size: 1.6rem; font-family: 'Outfit', sans-serif; font-weight: 600; }
+    .body { padding: 40px; color: #d1d5db; line-height: 1.6; }
+    .success-badge { background: rgba(25, 208, 95, 0.1); border: 1px solid rgba(25, 208, 95, 0.25); color: #19d05f; border-radius: 8px; padding: 14px 20px; font-size: 0.95rem; margin-bottom: 30px; font-weight: 500; text-align: center; }
     .details-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    .details-table td { padding: 10px 0; border-bottom: 1px solid #e8eaed; font-size: 0.93rem; color: #374151; }
-    .details-table td:first-child { color: #6b7280; width: 45%; }
-    .details-table td:last-child { font-weight: 500; text-align: right; }
-    .total-row td { border-bottom: none; font-size: 1rem; font-weight: 700; color: #0a1628; }
-    .cta-section { background: #f8f9fa; border-radius: 10px; padding: 24px; margin: 24px 0; text-align: center; }
-    .cta-section p { margin: 0 0 16px; color: #374151; font-size: 0.95rem; line-height: 1.6; }
-    .btn { display: inline-block; background: #c8a951; color: #0a1628; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 1rem; }
-    .note { font-size: 0.85rem; color: #6b7280; margin-top: 12px; }
-    .footer { background: #f4f6f9; padding: 20px 40px; text-align: center; font-size: 0.82rem; color: #9ca3af; }
+    .details-table td { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.95rem; color: #d1d5db; }
+    .details-table td:first-child { color: #9ca3af; width: 45%; }
+    .details-table td:last-child { font-weight: 500; text-align: right; color: #ffffff; }
+    .total-row td { border-bottom: none; font-size: 1.1rem; font-weight: 700; color: #19d05f; }
+    .cta-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 30px 24px; margin: 30px 0; text-align: center; }
+    .cta-section p { margin: 0 0 20px; color: #d1d5db; font-size: 0.95rem; line-height: 1.6; }
+    .btn { display: inline-block; background: #19d05f; color: #050814; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 1rem; font-family: 'Outfit', sans-serif; }
+    .note { font-size: 0.85rem; color: #6b7280; margin-top: 16px; }
+    .footer { background: #070a1a; padding: 24px 40px; text-align: center; font-size: 0.82rem; color: #6b7280; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer a { color: #19d05f; text-decoration: none; }
   </style>
 </head>
 <body>
   <div class="wrapper">
     <div class="header">
-      <h1>AURUM EA</h1>
-      <p>Payment Confirmed</p>
+      <a href="${appUrl}" class="header-logo">
+        <img src="${appUrl}/images/logo-navbar.png" alt="AURUM EA Logo" />
+        <div class="header-logo-text">AURUM<span>GOLD</span></div>
+      </a>
+      <h1>Payment Confirmed</h1>
     </div>
     <div class="body">
-      <p>Hi <strong>${customerName || "Valued Customer"}</strong>,</p>
+      <p>Hi <strong style="color: #ffffff;">${customerName || "Valued Customer"}</strong>,</p>
       <div class="success-badge">✅ Your payment has been successfully completed. Thank you for choosing AURUM EA!</div>
       <p>Here is a summary of your purchase:</p>
       <table class="details-table">
@@ -114,25 +122,25 @@ export async function sendPaymentSuccessEmail({
         <tr><td>Base Price</td><td>${currencySymbol}${basePrice.toLocaleString()}</td></tr>
         ${vatAmount > 0 ? `<tr><td>VAT (${vatPercentage}%)</td><td>${currencySymbol}${vatAmount.toLocaleString()}</td></tr>` : ""}
         <tr class="total-row"><td>Total Paid</td><td>${currencySymbol}${amount.toLocaleString()} ${currency}</td></tr>
-        <tr><td>Payment ID</td><td style="font-size:0.82rem;font-family:monospace">${stripePaymentId || stripeSessionId}</td></tr>
+        <tr><td>Payment ID</td><td style="font-size:0.82rem;font-family:monospace;color:#9ca3af;">${stripePaymentId || stripeSessionId}</td></tr>
         ${invoiceNumber ? `<tr><td>Invoice</td><td>${invoiceNumber}</td></tr>` : ""}
       </table>
 
       <div class="cta-section">
-        <p><strong>Complete your requirements form</strong><br />
-        Please complete the short form below so our team can understand your needs and get started.</p>
-        <a href="${formLink}" class="btn">Complete My Requirements Form</a>
-        <p class="note">Don't have time right now? No problem — this secure link will work whenever you're ready.</p>
+        <h3 style="color:#ffffff;font-size:1.15rem;font-family:'Outfit',sans-serif;margin:0 0 10px 0;font-weight:600;">Complete your requirements form</h3>
+        <p style="margin:0 0 28px 0;color:#d1d5db;font-size:0.95rem;line-height:1.6;">Please complete the short form below so our team can understand your needs and get started.</p>
+        <a href="${formLink}" class="btn" style="line-height:1.2;display:inline-block;">Complete My Requirements Form</a>
+        <p class="note" style="margin:24px 0 0 0;font-size:0.85rem;color:#6b7280;">Don't have time right now? No problem — this secure link will work whenever you're ready.</p>
       </div>
 
-      <p style="color:#374151;font-size:0.93rem;line-height:1.7">
+      <p style="font-size:0.93rem;">
         Our team will begin processing your order once your requirements are submitted. 
         If you have any questions, reply to this email or contact us at 
-        <a href="mailto:info@aurum-goldea.com" style="color:#c8a951">info@aurum-goldea.com</a>.
+        <a href="mailto:info@aurum-goldea.com" style="color:#19d05f;font-weight:500;">info@aurum-goldea.com</a>.
       </p>
     </div>
     <div class="footer">
-      © ${new Date().getFullYear()} AURUM EA · Moneytize Trading Academy · aurum-goldea.com
+      © ${new Date().getFullYear()} AURUM EA · Moneytize Trading Academy · <a href="${appUrl}">aurum-goldea.com</a>
     </div>
   </div>
 </body>
@@ -183,7 +191,7 @@ export async function sendInternalPaymentNotification({
 }) {
   const html = `
 <h2>🆕 New Payment Received – AURUM EA</h2>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;width:100%">
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;width:100%;font-family:sans-serif;">
   <tr><td><strong>Customer Name</strong></td><td>${customerName}</td></tr>
   <tr><td><strong>Customer Email</strong></td><td>${customerEmail}</td></tr>
   <tr><td><strong>Plan</strong></td><td>${planName}</td></tr>
@@ -208,6 +216,7 @@ export async function sendInternalPaymentNotification({
 // 3. Requirement Form Confirmation Email → Customer
 // ----------------------------------------------------------------
 export async function sendRequirementConfirmationEmail({ customerEmail, customerName }) {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -215,32 +224,40 @@ export async function sendRequirementConfirmationEmail({ customerEmail, customer
   <meta charset="UTF-8" />
   <title>Requirements Received – AURUM EA</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f6f9; margin: 0; padding: 0; }
-    .wrapper { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
-    .header { background: #0a1628; padding: 32px 40px; text-align: center; }
-    .header h1 { color: #c8a951; margin: 0; font-size: 1.6rem; }
-    .header p { color: rgba(255,255,255,0.7); margin: 8px 0 0; }
-    .body { padding: 40px; color: #374151; line-height: 1.7; }
-    .footer { background: #f4f6f9; padding: 20px 40px; text-align: center; font-size: 0.82rem; color: #9ca3af; }
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #050814; margin: 0; padding: 0; }
+    .wrapper { max-width: 600px; margin: 40px auto; background: #0a0f24; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    .header { background: #070a1a; padding: 32px 40px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .header-logo { display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; text-decoration: none; }
+    .header-logo img { height: 45px; margin-right: 12px; }
+    .header-logo-text { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 700; color: #ffffff; letter-spacing: 1px; }
+    .header-logo-text span { color: #19d05f; font-weight: 400; font-size: 14px; letter-spacing: 2px; margin-left: 4px; }
+    .header h1 { color: #ffffff; margin: 0; font-size: 1.6rem; font-family: 'Outfit', sans-serif; font-weight: 600; }
+    .body { padding: 40px; color: #d1d5db; line-height: 1.7; }
+    .footer { background: #070a1a; padding: 24px 40px; text-align: center; font-size: 0.82rem; color: #6b7280; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer a { color: #19d05f; text-decoration: none; }
   </style>
 </head>
 <body>
   <div class="wrapper">
     <div class="header">
-      <h1>AURUM EA</h1>
-      <p>Requirements Received</p>
+      <a href="${appUrl}" class="header-logo">
+        <img src="${appUrl}/images/logo-navbar.png" alt="AURUM EA Logo" />
+        <div class="header-logo-text">AURUM<span>GOLD</span></div>
+      </a>
+      <h1>Requirements Received</h1>
     </div>
     <div class="body">
-      <p>Hi <strong>${customerName || "Valued Customer"}</strong>,</p>
+      <p>Hi <strong style="color: #ffffff;">${customerName || "Valued Customer"}</strong>,</p>
       <p>Thank you for submitting your requirements. We have successfully received your information.</p>
       <p>Our team will review your requirements and get back to you shortly. We typically respond within the same business day.</p>
       <p>If you have any urgent questions in the meantime, feel free to reach us at 
-        <a href="mailto:info@aurum-goldea.com" style="color:#c8a951">info@aurum-goldea.com</a>.
+        <a href="mailto:info@aurum-goldea.com" style="color:#19d05f;font-weight:500;">info@aurum-goldea.com</a>.
       </p>
       <p>Thank you for choosing AURUM EA!</p>
     </div>
     <div class="footer">
-      © ${new Date().getFullYear()} AURUM EA · Moneytize Trading Academy · aurum-goldea.com
+      © ${new Date().getFullYear()} AURUM EA · Moneytize Trading Academy · <a href="${appUrl}">aurum-goldea.com</a>
     </div>
   </div>
 </body>
@@ -265,7 +282,7 @@ export async function sendInternalRequirementNotification({ customerName, custom
   const html = `
 <h2>📋 New Requirements Submitted – AURUM EA</h2>
 <p><strong>Customer:</strong> ${customerName} (${customerEmail})</p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;width:100%">
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;width:100%;font-family:sans-serif;">
   ${rows}
 </table>`;
 
