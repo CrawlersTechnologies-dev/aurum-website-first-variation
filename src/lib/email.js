@@ -92,7 +92,7 @@ export async function sendPaymentSuccessEmail({
     .body { padding: 40px; color: #d1d5db; line-height: 1.6; }
     .success-badge { background: rgba(25, 208, 95, 0.1); border: 1px solid rgba(25, 208, 95, 0.25); color: #19d05f; border-radius: 8px; padding: 14px 20px; font-size: 0.95rem; margin-bottom: 30px; font-weight: 500; text-align: center; }
     .details-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    .details-table td { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.95rem; color: #d1d5db; }
+    .details-table td { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.95rem; color: #d1d5db; }
     .details-table td:first-child { color: #9ca3af; width: 45%; }
     .details-table td:last-child { font-weight: 500; text-align: right; color: #ffffff; }
     .total-row td { border-bottom: none; font-size: 1.1rem; font-weight: 700; color: #19d05f; }
@@ -116,7 +116,7 @@ export async function sendPaymentSuccessEmail({
     <div class="body">
       <p>Hi <strong style="color: #ffffff;">${customerName || "Valued Customer"}</strong>,</p>
       <div class="success-badge">✅ Your payment has been successfully completed. Thank you for choosing AURUM EA!</div>
-      <p>Here is a summary of your purchase:</p>
+      <p style="text-align:center;">Here is a summary of your purchase:</p>
       <table class="details-table">
         <tr><td>Plan</td><td>${planName} Plan</td></tr>
         <tr><td>Base Price</td><td>${currencySymbol}${basePrice.toLocaleString()}</td></tr>
@@ -233,7 +233,7 @@ export async function sendRequirementConfirmationEmail({ customerEmail, customer
     .header-logo-text { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 700; color: #ffffff; letter-spacing: 1px; }
     .header-logo-text span { color: #19d05f; font-weight: 400; font-size: 14px; letter-spacing: 2px; margin-left: 4px; }
     .header h1 { color: #ffffff; margin: 0; font-size: 1.6rem; font-family: 'Outfit', sans-serif; font-weight: 600; }
-    .body { padding: 40px; color: #d1d5db; line-height: 1.7; }
+    .body { padding: 40px; color: #d1d5db; line-height: 1.7; text-align: left; }
     .footer { background: #070a1a; padding: 24px 40px; text-align: center; font-size: 0.82rem; color: #6b7280; border-top: 1px solid rgba(255,255,255,0.05); }
     .footer a { color: #19d05f; text-decoration: none; }
   </style>
@@ -250,11 +250,12 @@ export async function sendRequirementConfirmationEmail({ customerEmail, customer
     <div class="body">
       <p>Hi <strong style="color: #ffffff;">${customerName || "Valued Customer"}</strong>,</p>
       <p>Thank you for submitting your requirements. We have successfully received your information.</p>
-      <p>Our team will review your requirements and get back to you shortly. We typically respond within the same business day.</p>
-      <p>If you have any urgent questions in the meantime, feel free to reach us at 
+      <p>Our team will review the details and get back to you as soon as possible. In most cases, you can expect a response within the same business day.</p>
+      <p>If you have any questions in the meantime, feel free to reply to this email or contact us at 
         <a href="mailto:info@aurum-goldea.com" style="color:#19d05f;font-weight:500;">info@aurum-goldea.com</a>.
       </p>
-      <p>Thank you for choosing AURUM EA!</p>
+      <p>Thank you for choosing AURUM GOLD EA. We look forward to assisting you.</p>
+      <p style="margin-top:24px;">Best regards,<br/><br/><strong style="color:#ffffff;">Team AURUM GOLD EA</strong></p>
     </div>
     <div class="footer">
       © ${new Date().getFullYear()} AURUM EA · Moneytize Trading Academy · <a href="${appUrl}">aurum-goldea.com</a>
@@ -267,7 +268,7 @@ export async function sendRequirementConfirmationEmail({ customerEmail, customer
     to: customerEmail,
     subject: "✅ Requirements Received – AURUM EA",
     html,
-    text: `Hi ${customerName},\n\nThank you for submitting your requirements. We have successfully received your information.\n\nOur team will review and get back to you shortly.\n\nAURUM EA Team`,
+    text: `Hi ${customerName || "Valued Customer"},\n\nThank you for submitting your requirements. We have successfully received your information.\n\nOur team will review the details and get back to you as soon as possible. In most cases, you can expect a response within the same business day.\n\nIf you have any questions in the meantime, feel free to reply to this email or contact us at info@aurum-goldea.com.\n\nThank you for choosing AURUM GOLD EA. We look forward to assisting you.\n\nBest regards,\n\nTeam AURUM GOLD EA`,
   });
 }
 
