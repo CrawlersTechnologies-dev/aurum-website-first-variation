@@ -471,7 +471,7 @@ export const profitablePoints = [
   },
   {
     title: "Enters faster than any human ever could",
-    text: "Millisecond execution, 24 hours a day. It catches the London open at 3am while you're asleep. Every time."
+    text: "Millisecond execution, 24 hours a day. It catches volatile market opens in the middle of the night while you're asleep. Every time. Even when it is 3 AM your time, AURUM is awake, capturing the moves you miss."
   },
   {
     title: "Protects capital before pursuing returns",
@@ -576,8 +576,8 @@ export const testimonials = [
 // Founder profile — swap `image` for a real photo (drop into client/public/images/
 // and update the path below; recommended square image, 600x600 or larger).
 export const founderProfile = {
-  image: "/images/founder-nikhil.jpeg",
-  name: "Nikhil Malhotra",
+  image: "/images/founder-nikhil-6.jfif",
+  name: "Nikkhil Malhotra",
   role: "Co-Founder & CEO, AURUM EA",
   bio: [
     { type: "text", value: "With " },

@@ -9,7 +9,7 @@ import "./AboutPage.css";
 const stats = [
   { n: "20+", l: "Years Combined Experience" },
   { n: "800+", l: "Traders Mentored" },
-  { n: "150+", l: "Active AURUM Users" },
+  { n: "280+", l: "Active AURUM Users" },
   { n: "KHDA", l: "Approved Institution" }
 ];
 
@@ -122,7 +122,7 @@ export default function AboutPage() {
                 />
               </div>
               <div className="founder-card__content">
-                <p className="founder-card__title">Nikhil &middot; Founder, Moneytize Trading Academy</p>
+                <p className="founder-card__title">Nikkhil &middot; Founder, Moneytize Trading Academy</p>
                 <p className="founder-card__org">KHDA Approved · Dubai, UAE</p>
                 <p className="founder-card__bio">
                   With over 12 years of experience in stocks, forex, and cryptocurrency markets, Nikhil

@@ -12,8 +12,7 @@ export default function AutomationPanel() {
           You will blink. <span className="automation-panel__title-accent">It won&apos;t.</span>
         </h3>
         <p className="automation-panel__body">
-          The London open hits at 3am. A setup appears for 4 seconds. By the time you wake up,
-          unlock your phone, and open MT5 it&apos;s gone. AURUM was already in the trade at second one.
+          A prime market move hits in the middle of the night. A setup appears for just 4 seconds. By the time you wake up, unlock your phone, and open MT5 the opportunity is already gone. But with AURUM, you never have to worry about missing out, because even when you are fast asleep at 3 AM, AURUM is awake, execution flawless, taking the trades for you.
         </p>
       </div>
 

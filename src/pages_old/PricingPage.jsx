@@ -60,8 +60,8 @@ export default function PricingPage() {
       <PageHero
         eyebrow="Pricing"
         title="One payment. Trade forever."
-        lead="No monthly fees. No subscriptions. No recurring charges. 150+ active users trust AURUM because it works, and because they only had to pay once."
-        badge="Lifetime licence · No recurring fees · 150+ active users"
+        lead="No monthly fees. No subscriptions. No recurring charges. 280+ active users trust AURUM because it works, and because they only had to pay once."
+        badge="Lifetime licence · No recurring fees · 280+ active users"
       />
 
       <Pricing themeClass="bgv-white" />
@@ -172,7 +172,7 @@ export default function PricingPage() {
       <section className="section section--tight cta-block bgv-navy">
         <div className="container cta-block__inner reveal">
           <p className="eyebrow">Ready</p>
-          <h2>150+ traders are in. Are you?</h2>
+          <h2>280+ traders are in. Are you?</h2>
           <p>
             Gold moves at 3am. AURUM doesn't sleep and now it doesn't have to cost you a monthly
             fee either. One payment. Lifetime access.

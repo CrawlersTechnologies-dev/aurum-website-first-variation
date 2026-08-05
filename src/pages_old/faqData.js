@@ -97,10 +97,10 @@ export const faqCategories = [
         q: "Can AURUM be used on prop firm accounts?",
         a: "Yes — the Diamond plan includes configuration support for prop firm accounts. Prop firms typically have daily drawdown limits, maximum position size restrictions, and rules around holding trades over the weekend. We help you configure AURUM's parameters to stay within those rules on a case-by-case basis."
       },
-      {
-        q: "Can I use a demo account first before going live?",
-        a: "Yes, and we encourage it. Once you have your licence, you can run AURUM on a demo account with realistic conditions to familiarise yourself with its behaviour, observe the grid structure, and test your risk parameters. Be aware that demo and live execution can differ — spreads on demo accounts are sometimes artificially tighter, and slippage is lower than in live conditions. Use demo as orientation, not as a final performance benchmark."
-      }
+      // {
+      //   q: "Can I use a demo account first before going live?",
+      //   a: "Yes, and we encourage it. Once you have your licence, you can run AURUM on a demo account with realistic conditions to familiarise yourself with its behaviour, observe the grid structure, and test your risk parameters. Be aware that demo and live execution can differ — spreads on demo accounts are sometimes artificially tighter, and slippage is lower than in live conditions. Use demo as orientation, not as a final performance benchmark."
+      // }
     ]
   },
   {
@@ -121,7 +121,7 @@ export const faqCategories = [
       },
       {
         q: "Can I see verified trading results before buying?",
-        a: "Yes — our Results page shows trading performance data from live AURUM accounts, including community results from our 150+ active users. No trading system performs identically across all accounts due to differences in broker, account size, risk settings, and market timing — so treat published results as directional indicators, not guarantees of what you'll personally experience."
+        a: "Yes — our Results page shows trading performance data from live AURUM accounts, including community results from our 280+ active users. No trading system performs identically across all accounts due to differences in broker, account size, risk settings, and market timing — so treat published results as directional indicators, not guarantees of what you'll personally experience."
       }
     ]
   },

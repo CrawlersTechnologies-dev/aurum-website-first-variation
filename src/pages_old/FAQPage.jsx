@@ -93,7 +93,7 @@ export default function FAQPage() {
           <p className="eyebrow">Ready</p>
           <h2>Questions answered. Time to act.</h2>
           <p>
-            150+ traders didn't wait for the perfect moment. They set it up, let it run, and got
+            280+ traders didn't wait for the perfect moment. They set it up, let it run, and got
             out of their own way. You can too.
           </p>
           <div className="cta-block__actions">

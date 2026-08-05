@@ -197,13 +197,13 @@ const TRUST_ITEMS = [
   { title: "Real Accounts", text: "Live trading results from real traders." },
   { title: "Verified by MyFXBook", text: "Industry standard verification." },
   { title: "100% Transparent", text: "No filters. No fake promises." },
-  { title: "150+ Traders", text: "And growing every day." }
+  { title: "280+ Traders", text: "And growing every day." }
 ];
 
 const RESULT_STATS = [
   { value: "+107.67%", label: "Verified gain on the live MyFXBook account" },
   { value: "$530k+", label: "Verified profit tracked from broker data" },
-  { value: "150+", label: "Traders making money with AURUM" },
+  { value: "280+", label: "Traders making money with AURUM" },
   { value: "24/7", label: "Automated execution on live accounts" }
 ];
 
@@ -213,8 +213,8 @@ export default function ResultsPage() {
       <PageHero
         eyebrow="Performance"
         title="Real Accounts. Real Results."
-        lead="150+ active traders. A live MyFXBook track record with +107.67% verified gain. These aren't demo screenshots or backtested curves this is what AURUM has done, and continues to do, on live accounts every day."
-        badge="150+ active traders · +107.67% verified gain · $530k+ verified profit"
+        lead="280+ active traders. A live MyFXBook track record with +107.67% verified gain. These aren't demo screenshots or backtested curves this is what AURUM has done, and continues to do, on live accounts every day."
+        badge="280+ active traders · +107.67% verified gain · $530k+ verified profit"
         note="Results vary by account size, broker, and risk settings. Past performance does not guarantee future results. Always trade with capital you can afford to lose."
       />
 
@@ -305,7 +305,7 @@ export default function ResultsPage() {
         <div className="container">
           <div className="section-head section-head--center reveal">
             <p className="eyebrow">Real Traders. Real Results.</p>
-            <h2>150+ traders. Verified track record on MyFXBook.</h2>
+            <h2>280+ traders. Verified track record on MyFXBook.</h2>
             <p>These are the people behind the numbers real accounts, real returns, in their own words.</p>
           </div>
 
@@ -359,7 +359,7 @@ export default function ResultsPage() {
           <p className="eyebrow">Your Turn</p>
           <h2>You&apos;ve seen the results. Now get them.</h2>
           <p>
-            150+ traders started where you are right now  reading this page, wondering if it&apos;s
+            280+ traders started where you are right now  reading this page, wondering if it&apos;s
             real. The only way to know is to start.
           </p>
           <div className="cta-block__actions">
