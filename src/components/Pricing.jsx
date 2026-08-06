@@ -119,7 +119,7 @@ export default function Pricing({ compact = false, themeClass = "section--white"
         <div className="section-head section-head--center pricing__head reveal">
           <p className="eyebrow">Pricing</p>
           <h2>Choose Your Trading Edge</h2>
-          <p>Join 150+ successful traders using our proven system</p>
+          <p>Join 280+ successful traders using our proven system</p>
 
           <div className="pricing__trust">
             <Icon name="check" size={18} strokeWidth={2.2} />
