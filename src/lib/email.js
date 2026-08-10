@@ -187,6 +187,7 @@ export async function sendInternalPaymentNotification({
   invoiceId,
   invoiceNumber,
   paidDate,
+  zohoError,
 }) {
   const html = `
 <h2>🆕 New Payment Received – AURUM EA</h2>
@@ -200,6 +201,7 @@ export async function sendInternalPaymentNotification({
   <tr><td><strong>Stripe Session ID</strong></td><td>${stripeSessionId}</td></tr>
   <tr><td><strong>Zoho Invoice Number</strong></td><td>${invoiceNumber || "N/A"}</td></tr>
   <tr><td><strong>Zoho Invoice ID</strong></td><td>${invoiceId || "N/A"}</td></tr>
+  <tr><td><strong>Zoho Sync Error</strong></td><td style="color:red; font-weight:bold;">${zohoError || "None - Sync Successful"}</td></tr>
   <tr><td><strong>Payment Date</strong></td><td>${paidDate || new Date().toISOString()}</td></tr>
 </table>`;
 

@@ -136,6 +136,7 @@ async function handleCheckoutSessionCompleted(event) {
   let zohoCustomer = null;
   let zohoInvoice = null;
   let zohoPayment = null;
+  let zohoErrorMsg = null;
 
   try {
     // 1. Find or create customer
@@ -178,6 +179,7 @@ async function handleCheckoutSessionCompleted(event) {
     // Zoho failure should NOT prevent email from being sent.
     // Log and continue — retry logic can be added later.
     console.error("[Webhook] Zoho Books sync FAILED:", zohoErr.message);
+    zohoErrorMsg = zohoErr.message;
     // TODO: Store failed sync for retry (e.g., in a database queue)
   }
 
@@ -218,6 +220,7 @@ async function handleCheckoutSessionCompleted(event) {
       invoiceId: zohoInvoice?.invoice_id,
       invoiceNumber: zohoInvoice?.invoice_number,
       paidDate,
+      zohoError: zohoErrorMsg,
     });
   } catch (emailErr) {
     console.error("[Webhook] Failed to send internal notification:", emailErr.message);
