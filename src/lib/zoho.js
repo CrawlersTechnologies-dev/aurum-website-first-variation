@@ -186,16 +186,10 @@ export async function createInvoice({
 
   const payload = {
     customer_id: contactId,
-    invoice_number_prefix: "AUM",
     currency_code: currency,
     reference_number: stripePaymentIntentId || stripeSessionId,
-    notes: `Stripe Session: ${stripeSessionId} | Payment Intent: ${stripePaymentIntentId || "N/A"}`,
+    notes: `Stripe Session: ${stripeSessionId} | Payment Intent: ${stripePaymentIntentId || "N/A"} | Customer Email: ${customerEmail || "N/A"}`,
     line_items: lineItems,
-    custom_fields: [
-      { label: "Stripe Payment ID", value: stripePaymentIntentId || "" },
-      { label: "Stripe Session ID", value: stripeSessionId || "" },
-      { label: "Customer Email", value: customerEmail || "" },
-    ],
   };
 
   const res = await fetch(url, {
