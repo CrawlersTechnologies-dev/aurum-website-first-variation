@@ -12,8 +12,8 @@
  * This file never exposes secrets to the client.
  */
 
-const ZOHO_API_BASE = "https://www.zohoapis.com/books/v3";
-const ZOHO_TOKEN_URL = "https://accounts.zoho.com/oauth/v2/token";
+const ZOHO_API_BASE = "https://www.zohoapis.ae/books/v3";
+const ZOHO_TOKEN_URL = "https://accounts.zoho.ae/oauth/v2/token";
 
 let cachedToken = null;
 let tokenExpiry = 0;
