@@ -124,6 +124,9 @@ export async function createCustomer({ name, email, countryCode, currency }) {
   });
   const data = await res.json();
 
+  if (data.code !== 0) {
+    throw new Error(`Zoho API Error (${data.code}): ${data.message}`);
+  }
   if (!data.contact) {
     throw new Error(`Failed to create Zoho customer: ${JSON.stringify(data)}`);
   }
@@ -167,6 +170,7 @@ export async function createInvoice({
       description: "Lifetime licence · One-time payment",
       rate: basePrice,
       quantity: 1,
+      account_id: process.env.ZOHO_SALES_ACCOUNT_ID || "",
     },
   ];
 
@@ -176,6 +180,7 @@ export async function createInvoice({
       description: `Value Added Tax at ${vatPercentage}%`,
       rate: vatAmount,
       quantity: 1,
+      account_id: process.env.ZOHO_SALES_ACCOUNT_ID || "",
     });
   }
 
@@ -200,6 +205,9 @@ export async function createInvoice({
   });
   const data = await res.json();
 
+  if (data.code !== 0) {
+    throw new Error(`Zoho API Error (${data.code}): ${data.message}`);
+  }
   if (!data.invoice) {
     throw new Error(`Failed to create Zoho invoice: ${JSON.stringify(data)}`);
   }
@@ -211,7 +219,7 @@ export async function createInvoice({
 /**
  * Records a payment against a Zoho Books invoice and marks it as paid.
  */
-export async function recordPayment({ invoiceId, amount, currency, stripePaymentIntentId, paidDate }) {
+export async function recordPayment({ customerId, invoiceId, amount, currency, stripePaymentIntentId, paidDate }) {
   const isDev = process.env.ZOHO_REFRESH_TOKEN === "dummy_refresh_token";
   if (isDev) {
     console.log(`[Zoho DEV] recordPayment for invoiceId: ${invoiceId}, amount: ${amount} ${currency}`);
@@ -222,6 +230,7 @@ export async function recordPayment({ invoiceId, amount, currency, stripePayment
   const url = `${ZOHO_API_BASE}/customerpayments?organization_id=${orgId()}`;
 
   const payload = {
+    customer_id: customerId,
     amount,
     date: paidDate || new Date().toISOString().split("T")[0],
     payment_mode: "stripe",
@@ -242,6 +251,9 @@ export async function recordPayment({ invoiceId, amount, currency, stripePayment
   });
   const data = await res.json();
 
+  if (data.code !== 0) {
+    throw new Error(`Zoho API Error (${data.code}): ${data.message}`);
+  }
   if (!data.payment) {
     throw new Error(`Failed to record Zoho payment: ${JSON.stringify(data)}`);
   }

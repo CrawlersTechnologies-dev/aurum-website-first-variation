@@ -144,7 +144,7 @@ async function handleCheckoutSessionCompleted(event) {
       zohoCustomer = await createCustomer({
         name: customerName,
         email: customerEmail,
-        countryCode,
+        countryCode: customerCountry,
         currency,
       });
     }
@@ -165,6 +165,7 @@ async function handleCheckoutSessionCompleted(event) {
 
     // 3. Record payment
     zohoPayment = await recordPayment({
+      customerId: zohoCustomer.contact_id,
       invoiceId: zohoInvoice.invoice_id,
       amount: amountTotal,
       currency,
@@ -210,7 +211,7 @@ async function handleCheckoutSessionCompleted(event) {
       planName,
       amount: amountTotal,
       currency,
-      vatAmount: Number(vatAmount),
+      vatAmount: Number(amountTax),
       vatPercentage: Number(vatPercentage),
       stripePaymentId: stripePaymentIntentId,
       stripeSessionId,
