@@ -58,12 +58,13 @@ async function getAccessToken() {
   console.log("==============================");
 
   if (!data.access_token) {
+    const mask = (s) => (!s ? 'Missing' : s.length < 8 ? '***' : `${s.substring(0, 4)}...${s.substring(s.length - 4)}`);
     const diagnosticInfo = [
       `URL: ${ZOHO_TOKEN_URL}`,
-      `ID: ${!!process.env.ZOHO_CLIENT_ID}`,
-      `SECRET: ${!!process.env.ZOHO_CLIENT_SECRET}`,
-      `TOKEN: ${!!process.env.ZOHO_REFRESH_TOKEN}`,
-      `ORG: ${!!process.env.ZOHO_ORGANIZATION_ID}`,
+      `ID: ${mask(process.env.ZOHO_CLIENT_ID)} (Len: ${process.env.ZOHO_CLIENT_ID?.length})`,
+      `SECRET: ${mask(process.env.ZOHO_CLIENT_SECRET)} (Len: ${process.env.ZOHO_CLIENT_SECRET?.length})`,
+      `TOKEN: ${mask(process.env.ZOHO_REFRESH_TOKEN)} (Len: ${process.env.ZOHO_REFRESH_TOKEN?.length})`,
+      `ORG: ${mask(process.env.ZOHO_ORGANIZATION_ID)} (Len: ${process.env.ZOHO_ORGANIZATION_ID?.length})`,
     ].join(" | ");
 
     throw new Error(`Failed to get Zoho access token: ${JSON.stringify(data)} --- Diagnostics: [${diagnosticInfo}]`);
