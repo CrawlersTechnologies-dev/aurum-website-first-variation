@@ -42,11 +42,31 @@ async function getAccessToken() {
     grant_type: "refresh_token",
   });
 
+  console.log("=== Zoho OAuth Diagnostics ===");
+  console.log(`Endpoint: ${ZOHO_TOKEN_URL}`);
+  console.log(`ZOHO_CLIENT_ID exists: ${!!process.env.ZOHO_CLIENT_ID}`);
+  console.log(`ZOHO_CLIENT_SECRET exists: ${!!process.env.ZOHO_CLIENT_SECRET}`);
+  console.log(`ZOHO_REFRESH_TOKEN exists: ${!!process.env.ZOHO_REFRESH_TOKEN}`);
+  console.log(`ZOHO_ORGANIZATION_ID exists: ${!!process.env.ZOHO_ORGANIZATION_ID}`);
+  console.log(`ZOHO_SALES_ACCOUNT_ID exists: ${!!process.env.ZOHO_SALES_ACCOUNT_ID}`);
+
   const res = await fetch(`${ZOHO_TOKEN_URL}?${params}`, { method: "POST" });
+  console.log(`Zoho HTTP Status: ${res.status}`);
+  
   const data = await res.json();
+  console.log(`Zoho Response: ${JSON.stringify(data)}`);
+  console.log("==============================");
 
   if (!data.access_token) {
-    throw new Error(`Failed to get Zoho access token: ${JSON.stringify(data)}`);
+    const diagnosticInfo = [
+      `URL: ${ZOHO_TOKEN_URL}`,
+      `ID: ${!!process.env.ZOHO_CLIENT_ID}`,
+      `SECRET: ${!!process.env.ZOHO_CLIENT_SECRET}`,
+      `TOKEN: ${!!process.env.ZOHO_REFRESH_TOKEN}`,
+      `ORG: ${!!process.env.ZOHO_ORGANIZATION_ID}`,
+    ].join(" | ");
+
+    throw new Error(`Failed to get Zoho access token: ${JSON.stringify(data)} --- Diagnostics: [${diagnosticInfo}]`);
   }
 
   cachedToken = data.access_token;
