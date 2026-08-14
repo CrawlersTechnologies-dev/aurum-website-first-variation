@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { navLinks } from "../data/content";
 import Icon from "./Icon";
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import "./Navbar.css";
 
@@ -53,7 +54,7 @@ export default function Navbar() {
       <div className="container nav__row">
         <Link href="/" className="nav__logo" onClick={() => setOpen(false)}>
           <span className="nav__logo-mark-wrap">
-            <img src="/images/logo-navbar.png" alt="AURUM EA Gold Expert Advisor logo" className="nav__logo-mark"/>
+            <Image src="/images/logo-navbar.png" width={48} height={48} alt="AURUM EA Gold Expert Advisor logo" className="nav__logo-mark"/>
           </span>
           <span className="nav__logo-copy">
             <span className="nav__logo-text">

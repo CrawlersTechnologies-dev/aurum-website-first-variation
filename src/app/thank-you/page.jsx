@@ -1,4 +1,9 @@
-"use client";
+
+export const metadata = {
+  title: 'Payment Successful | Welcome to AURUM EA',
+  description: 'Thank you for purchasing AURUM EA. Your lifetime license is confirmed and your automated gold trading journey begins now.',
+};
+\n"use client";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";

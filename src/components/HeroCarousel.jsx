@@ -4,10 +4,12 @@ import { createPortal } from "react-dom";
 import { heroCarouselSlides } from "../data/content";
 import "./HeroCarousel.css";
 
+import Image from 'next/image';
+
 function MyfxbookMark() {
   return (
     <span className="hero-carousel__fx" aria-hidden="true">
-      <img
+      <Image
         src="/images/myfxbook-mark.png"
         alt=""
         width={18}

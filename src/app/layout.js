@@ -37,12 +37,15 @@ export const viewport = {
   maximumScale: 1,
 };
 
+import { GoogleAnalytics } from '@next/third-parties/google';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
         <ClientLayout>{children}</ClientLayout>
       </body>
+      {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
     </html>
   );
 }

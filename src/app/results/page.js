@@ -3,7 +3,7 @@ import ResultsPage from "../../pages_old/ResultsPage";
 export const metadata = {
   title: "Verified Results | AURUM EA MyFXBook Performance",
   description:
-    "See AURUM Gold EA Tradewize live MyFXBook results: +107.67% verified gain, $530k+ profit, 5.48% monthly return, 16.95% drawdown, and monthly analytics for 2025–2026.",
+    "See AURUM Gold EA live MyFXBook results: +107.67% verified gain, $530k+ profit, 5.48% monthly return, and advanced monthly analytics.",
   openGraph: {
     title: "AURUM EA Verified MyFXBook Results",
     description:

@@ -1,6 +1,7 @@
 "use client";
 import { footerColumns } from "../data/content";
 import Link from 'next/link';
+import Image from 'next/image';
 import "./Footer.css";
 
 export default function Footer() {
@@ -11,7 +12,7 @@ export default function Footer() {
       <div className="container footer__top reveal">
         <div className="footer__brand">
           <Link href="/" className="footer__logo">
-            <img src="/images/logo-navbar.png" alt="AURUM EA Gold Expert Advisor logo" className="footer__logo-mark" />
+            <Image src="/images/logo-navbar.png" width={48} height={48} alt="AURUM EA Gold Expert Advisor logo" className="footer__logo-mark" />
             <span className="footer__logo-text">
               AURUM<span className="footer__logo-thin">GOLD</span>
             </span>
