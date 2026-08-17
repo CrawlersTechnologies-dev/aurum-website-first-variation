@@ -2,6 +2,7 @@
 import { useState, useRef } from 'react';
 import PageHero from "./PageHero";
 import Link from 'next/link';
+import Image from 'next/image';
 import "./shared-page.css";
 import "./SetupGuidePage.css";
 
@@ -81,55 +82,10 @@ const IconGlobe = (props) => (
   </svg>
 );
 
-const IconShield = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M12 3 4.5 6v6c0 4.7 3.2 8.4 7.5 9 4.3-.6 7.5-4.3 7.5-9V6L12 3Z" />
-    <path d="m9 12 2 2 4-4" />
-  </svg>
-);
-
 const IconInfo = (props) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <circle cx="12" cy="12" r="9" />
     <path d="M12 11v5.5M12 7.5h.01" />
-  </svg>
-);
-
-const IconWallet = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v2" />
-    <path d="M3 7v10a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1H6a2 2 0 0 1-2-2Z" />
-    <circle cx="16.5" cy="13.5" r="1.25" fill="currentColor" stroke="none" />
-  </svg>
-);
-
-const IconLot = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M4 19V10M10 19V5M16 19v-7M21 19H3" />
-  </svg>
-);
-
-const IconPercent = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M5 19 19 5" />
-    <circle cx="6.5" cy="6.5" r="2" />
-    <circle cx="17.5" cy="17.5" r="2" />
-  </svg>
-);
-
-const IconGrid = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <rect x="3" y="3" width="7" height="7" rx="1" />
-    <rect x="14" y="3" width="7" height="7" rx="1" />
-    <rect x="3" y="14" width="7" height="7" rx="1" />
-    <rect x="14" y="14" width="7" height="7" rx="1" />
-  </svg>
-);
-
-const IconWarning = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M12 3 2 20h20L12 3Z" />
-    <path d="M12 10v4.5M12 17.5h.01" />
   </svg>
 );
 
@@ -176,18 +132,60 @@ const vpsBenefits = [
 ];
 
 const vpsProviders = [
-  { name: "Beeks FX VPS", detail: "Purpose-built for MetaTrader · Low latency · Widely used", price: "$20/mo" },
-  { name: "ForexVPS.net", detail: "MT4/MT5 optimised · Simple setup · Good support", price: "$18/mo" },
-  { name: "Contabo VPS", detail: "Budget-friendly · High specs · Good for multiple EAs", price: "$8/mo" },
-  { name: "Your Broker's Free VPS", detail: "Many ECN brokers offer free VPS above a minimum deposit ask yours", price: "Free" }
+  {
+    name: "Beeks FX VPS",
+    href: "https://beeksgroup.com/services/trading-infrastructure/virtual-private-servers-vps/",
+    packageName: "Bronze",
+    packageHref: "https://www.beeksfinancialcloud.com/catalogue/VPS-BRONZE_1/",
+    price: "£32/mo",
+    specs: ["1 vCPU", "2560MB RAM", "30GB disk", "London", "Windows Server 2022"]
+  },
+  {
+    name: "ForexVPS.net",
+    href: "https://www.forexvps.net",
+    packageName: "Core",
+    packageHref: "https://www.forexvps.net",
+    price: "$40/mo",
+    specs: ["2 cores", "4 GB RAM", "100 GB SSD", "London", "Windows Server 2022", "English"],
+    note: "Daily backups optional"
+  },
+  {
+    name: "MyForexVPS",
+    href: "https://myforexvps.com",
+    packageName: "Silver VPS",
+    packageHref: "https://myforexvps.com/billing/cart.php?a=confproduct&i=1",
+    price: "$14.99/mo",
+    specs: ["2 cores", "2 GB RAM", "50 GB disk", "London", "Windows 2025"]
+  },
+  {
+    name: "FXVM",
+    href: "https://fxvm.net/forex-vps-trading",
+    packageName: "Lite VPS",
+    packageHref: "https://fxvm.net/forex-vps-trading#js-pricing-section",
+    price: "$25/mo",
+    specs: ["2 cores", "1536 MB RAM", "60 GB disk", "London", "Windows Server 2025"]
+  }
 ];
 
-const riskRows = [
-  { balance: "$1,000 – $2,000", lot: "0.01 lots", risk: "0.5%", grid: "3–4" },
-  { balance: "$2,000 – $5,000", lot: "0.02–0.03 lots", risk: "0.5–1%", grid: "4–6" },
-  { balance: "$5,000 – $10,000", lot: "0.05 lots", risk: "1%", grid: "5–7" },
-  { balance: "$10,000 – $25,000", lot: "0.10–0.15 lots", risk: "1–1.5%", grid: "6–8" },
-  { balance: "$25,000+", lot: "Custom", risk: "Discuss with team", grid: "Custom" }
+const trustedBrokers = [
+  {
+    name: "AvaTrade",
+    href: "https://www.avatrade.com/trading-account?p=MetaTrader5&tag=222605",
+    logo: "/images/brokers/avatrade.png",
+    logoWidth: 810,
+    logoHeight: 115,
+    square: false,
+    blurb: "MetaTrader 5 · the conditions we run ourselves"
+  },
+  {
+    name: "FXPro",
+    href: "https://direct-fxpro.com/en/partner/11046364",
+    logo: "/images/brokers/fxpro.png",
+    logoWidth: 800,
+    logoHeight: 800,
+    square: true,
+    blurb: "MetaTrader 5 · the conditions we run ourselves"
+  }
 ];
 
 export default function SetupGuidePage() {
@@ -304,15 +302,28 @@ export default function SetupGuidePage() {
                 </div>
                 <div className="vps-providers__list">
                   {vpsProviders.map((p) => (
-                    <div className="vps-provider" key={p.name}>
-                      <div className="vps-provider__info">
-                        <div className="vps-provider__name">{p.name}</div>
-                        <div className="vps-provider__detail">{p.detail}</div>
+                    <a
+                      className="vps-provider"
+                      key={p.name}
+                      href={p.packageHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${p.name} ${p.packageName}, ${p.price}`}
+                    >
+                      <div className="vps-provider__top">
+                        <div className="vps-provider__info">
+                          <span className="vps-provider__name">{p.name}</span>
+                          <span className="vps-provider__package">{p.packageName}</span>
+                        </div>
+                        <span className="vps-provider__price">{p.price}</span>
                       </div>
-                      <div className={`vps-provider__price ${p.price === "Free" ? "is-free" : ""}`}>
-                        {p.price}
-                      </div>
-                    </div>
+                      <ul className="vps-provider__specs">
+                        {p.specs.map((spec) => (
+                          <li key={spec}>{spec}</li>
+                        ))}
+                      </ul>
+                      {p.note && <p className="vps-provider__extra">{p.note}</p>}
+                    </a>
                   ))}
                 </div>
                 {/* <div className="vps-providers__note">
@@ -331,91 +342,49 @@ export default function SetupGuidePage() {
 
       <section id="risk" className="section risk-section">
         <div className="container">
-          <div className="risk-panel reveal">
-            <div className="risk-panel__header">
-              <div className="risk-panel__header-text">
-                <div className="risk-label">
-                  <IconShield className="risk-label__icon" />
-                  Configuration
-                </div>
-                <h2>Recommended risk settings by account size.</h2>
-                <p>
-                  These are starting-point guidelines, not rules. Your specific broker's spread,
-                  your risk appetite, and your trading goals all affect the right settings for
-                  you. When in doubt, start conservatively you can always increase later.
-                </p>
-              </div>
-
-              <div className="risk-panel__illustration" aria-hidden="true">
-                <svg viewBox="0 0 220 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="168" cy="52" r="30" fill="rgba(25,208,95,0.12)" />
-                  <g transform="translate(150,34)">
-                    <path
-                      d="M18 2 6 7v9c0 8 5 13.5 12 15.5C25 29.5 30 24 30 16V7L18 2Z"
-                      fill="none"
-                      stroke="var(--gold-soft)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="m12 18 4 4 8-8"
-                      fill="none"
-                      stroke="var(--gold-soft)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </g>
-                </svg>
-              </div>
-            </div>
-
-            <div className="risk-table-wrap">
-              <table className="risk-table-v2">
-                <thead>
-                  <tr>
-                    <th>
-                      <IconWallet className="risk-table-v2__head-icon" />
-                      Account Balance
-                    </th>
-                    <th>
-                      <IconLot className="risk-table-v2__head-icon" />
-                      Lot Size
-                    </th>
-                    <th className="is-gold">
-                      <IconPercent className="risk-table-v2__head-icon" />
-                      Risk %
-                    </th>
-                    <th>
-                      <IconGrid className="risk-table-v2__head-icon" />
-                      Max Grid Positions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {riskRows.map((row) => (
-                    <tr key={row.balance}>
-                      <td data-label="Account Balance">{row.balance}</td>
-                      <td data-label="Lot Size">{row.lot}</td>
-                      <td data-label="Risk %" className="is-gold">{row.risk}</td>
-                      <td data-label="Max Grid Positions">{row.grid}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="risk-disclosure">
-              <IconWarning className="risk-disclosure__icon" />
+          <div className="brokers-panel reveal">
+            <div className="brokers-panel__intro">
+              <p className="eyebrow">Brokers we use</p>
+              <h2>AURUM works with any MT5 broker. These are the two we trust.</h2>
               <p>
-                <strong>Risk Disclosure:</strong> These are guidelines, not guarantees of
-                performance or safety. Grid trading strategies can accumulate floating drawdown
-                during strongly trending markets. Never risk capital you cannot afford to lose.
-                All Diamond plan holders receive individual risk parameter consultation before
-                going live.
+                AURUM is not locked to one platform. If your broker supports MetaTrader 5
+                and Expert Advisors, it will run. Gold conditions still differ from broker
+                to broker — spread, slippage, and how XAUUSD behaves during news. We hold
+                our own live accounts with AvaTrade and FXPro. Those are the conditions we
+                know, so they are the two we recommend when someone is still choosing.
               </p>
             </div>
+
+            <div className="brokers-grid">
+              {trustedBrokers.map((broker) => (
+                <article className="broker-card" key={broker.name}>
+                  <div className={`broker-card__logo${broker.square ? " is-square" : ""}`}>
+                    <Image
+                      src={broker.logo}
+                      alt={`${broker.name} logo`}
+                      width={broker.logoWidth}
+                      height={broker.logoHeight}
+                    />
+                  </div>
+                  <h3>{broker.name}</h3>
+                  <p>{broker.blurb}</p>
+                  <a
+                    href={broker.href}
+                    className="btn btn--ghost"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                  >
+                    Visit {broker.name}
+                  </a>
+                </article>
+              ))}
+            </div>
+
+            <p className="brokers-panel__note">
+              Already with another broker? Stay there — AURUM will run the same way.
+              If you open an account through these links, we may receive a referral.
+              It does not change what you pay.
+            </p>
           </div>
 
           <div className="risk-cta reveal">

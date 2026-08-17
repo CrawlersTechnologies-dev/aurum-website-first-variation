@@ -61,7 +61,9 @@ export default function FAQPage() {
                     </button>
                     <div className="faq-item__panel">
                       <div className="faq-item__panel-inner">
-                        <p>{item.a}</p>
+                        {(Array.isArray(item.a) ? item.a : [item.a]).map((para) => (
+                          <p key={para}>{para}</p>
+                        ))}
                       </div>
                     </div>
                   </div>

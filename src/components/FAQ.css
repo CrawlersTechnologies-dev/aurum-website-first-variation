@@ -154,7 +154,7 @@
 }
 
 .faq-item.is-open .faq-item__panel {
-  max-height: 800px;
+  max-height: 2000px;
   opacity: 1;
 }
 
@@ -169,6 +169,10 @@
   font-size: 0.97rem;
   line-height: 1.65;
   max-width: 680px;
+}
+
+.faq-item__panel-inner p + p {
+  margin-top: 12px;
 }
 
 .bgv-white .faq-item__panel-inner p,
