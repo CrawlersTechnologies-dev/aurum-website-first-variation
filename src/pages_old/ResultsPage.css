@@ -733,6 +733,9 @@
 }
 
 @media (max-width: 560px) {
+  .mfx-banner__content h2 {
+    font-size: 2rem;
+  }
   .fxbook-grid {
     grid-template-columns: 1fr;
   }

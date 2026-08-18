@@ -408,10 +408,9 @@ export const footerColumns = [
 ];
 
 export const socialLinks = [
-  { label: "X (Twitter)", href: "#", icon: "twitter" },
-  { label: "Telegram", href: "#", icon: "telegram" },
-  { label: "YouTube", href: "#", icon: "youtube" },
-  { label: "Discord", href: "#", icon: "discord" }
+  { label: "Instagram", href: "https://www.instagram.com/aurumgoldea", icon: "instagram" },
+  { label: "Telegram", href: "https://t.me/hextechalgo", icon: "telegram" },
+  { label: "YouTube", href: "https://youtube.com/@moneytizellc", icon: "youtube" }
 ];
 
 export const tickerSeed = [

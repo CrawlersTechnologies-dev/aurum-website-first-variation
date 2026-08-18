@@ -63,6 +63,13 @@ const paths = {
       <path d="M15 5h6v6" strokeLinecap="round" strokeLinejoin="round" />
     </>
   ),
+  instagram: (
+    <>
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </>
+  ),
   twitter: (
     <path d="M18.9 3H21l-6.8 7.8L22 21h-6.6l-5.2-6.5L4.2 21H2l7.3-8.3L2.4 3H9l4.7 5.9L18.9 3z" />
   ),
