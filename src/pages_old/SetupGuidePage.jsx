@@ -260,7 +260,8 @@ export default function SetupGuidePage() {
               <div className="setup-step-row__media">
                 <SetupVideoDisplay
                   label="WATCH TUTORIAL: STEPS 4 – 6 (MT5 & EA INSTALLATION)"
-                  src="/videos/aurum-website-part-2.mp4"
+                  src="https://drive.google.com/file/d/1eKOk8jayQDE5B3kdwrisiCjQKsTRg1nd/preview"
+                  isIframe={true}
                 />
               </div>
             </div>
