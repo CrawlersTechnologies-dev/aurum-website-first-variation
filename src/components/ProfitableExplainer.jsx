@@ -20,16 +20,27 @@ export default function ProfitableExplainer() {
         <div className="profitable__video reveal" style={{ "--reveal-delay": "80ms" }}>
           <div className="video-card">
             {playing ? (
-              <video
-                className="video-card__player"
-                src={tutorialVideo.src}
-                poster={tutorialVideo.poster}
-                controls
-                autoPlay
-                playsInline
-              >
-                Sorry, your browser doesn&apos;t support embedded videos.
-              </video>
+              tutorialVideo.isIframe ? (
+                <iframe
+                  className="video-card__player"
+                  src={`${tutorialVideo.src}?autoplay=1`}
+                  allow="autoplay"
+                  allowFullScreen
+                  title="Tutorial Video"
+                  style={{ border: "none" }}
+                />
+              ) : (
+                <video
+                  className="video-card__player"
+                  src={tutorialVideo.src}
+                  poster={tutorialVideo.poster}
+                  controls
+                  autoPlay
+                  playsInline
+                >
+                  Sorry, your browser doesn&apos;t support embedded videos.
+                </video>
+              )
             ) : (
               <div className="video-card__frame">
                 <div className="video-card__grid" />
