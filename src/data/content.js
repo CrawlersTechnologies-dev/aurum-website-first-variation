@@ -199,7 +199,7 @@ export const humanVsAurum = [
 // (an .mp4 is the safest cross-browser format). `poster` is the thumbnail
 // shown before playback — optional, drop an image into client/public/images/.
 export const tutorialVideo = {
-  src: "/videos/aurum-tutorial.mp4",
+  src: "/videos/aurum-website-video.mp4",
   poster: "",
   label: "2 Min Watch",
   title: "See AURUM in action"

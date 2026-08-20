@@ -73,6 +73,7 @@
 .video-card__player {
   width: 100%;
   aspect-ratio: 16 / 9;
+  object-fit: cover;
   display: block;
   background: #000;
 }

@@ -226,7 +226,7 @@ export default function SetupGuidePage() {
               <div className="setup-step-row__media">
                 <SetupVideoDisplay
                   label="WATCH TUTORIAL: STEPS 1 – 3 (REGISTRATION & VPS)"
-                  src="/videos/aurum-setup-steps-1-3.mp4"
+                  src="/videos/aurum-website-part-1.mp4"
                 />
               </div>
             </div>
@@ -248,7 +248,7 @@ export default function SetupGuidePage() {
               <div className="setup-step-row__media">
                 <SetupVideoDisplay
                   label="WATCH TUTORIAL: STEPS 4 – 6 (MT5 & EA INSTALLATION)"
-                  src="/videos/aurum-setup-steps-4-6.mp4"
+                  src="/videos/aurum-website-part-2.mp4"
                 />
               </div>
             </div>
