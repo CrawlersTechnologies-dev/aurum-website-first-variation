@@ -6,7 +6,7 @@ import Image from 'next/image';
 import "./shared-page.css";
 import "./SetupGuidePage.css";
 
-const SetupVideoDisplay = ({ label, src, poster }) => {
+const SetupVideoDisplay = ({ label, src, poster, isIframe }) => {
   const [playing, setPlaying] = useState(false);
 
   const parts = label.split('(');
@@ -16,14 +16,25 @@ const SetupVideoDisplay = ({ label, src, poster }) => {
   return (
     <div className="setup-video-card">
       {playing ? (
-        <video
-          className="setup-video-card__player"
-          src={src || "/videos/aurum-installation-guide.mp4"}
-          poster={poster}
-          controls
-          autoPlay
-          playsInline
-        />
+        isIframe ? (
+          <iframe
+            className="setup-video-card__player"
+            src={`${src}?autoplay=1`}
+            allow="autoplay"
+            allowFullScreen
+            title="Setup Guide Video"
+            style={{ border: "none" }}
+          />
+        ) : (
+          <video
+            className="setup-video-card__player"
+            src={src || "/videos/aurum-installation-guide.mp4"}
+            poster={poster}
+            controls
+            autoPlay
+            playsInline
+          />
+        )
       ) : (
         <div className="setup-video-card__frame" onClick={() => setPlaying(true)}>
           <div className="setup-video-card__grid" />
@@ -226,7 +237,8 @@ export default function SetupGuidePage() {
               <div className="setup-step-row__media">
                 <SetupVideoDisplay
                   label="WATCH TUTORIAL: STEPS 1 – 3 (REGISTRATION & VPS)"
-                  src="/videos/aurum-website-part-1.mp4"
+                  src="https://drive.google.com/file/d/10D8_Db76RrbTuxjHdczxa_YwNGFhbgt_/preview"
+                  isIframe={true}
                 />
               </div>
             </div>
