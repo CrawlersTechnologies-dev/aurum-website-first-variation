@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import BackToTop from "./BackToTop";
 import useRevealAll from "../hooks/useRevealAll";
 import useApplySectionBackgrounds from "../hooks/useApplySectionBackgrounds";
+import TawkToWidget from "./TawkToWidget";
 
 // Approved background arrangement (Variation 1): Navy → White → Navy → White → Navy.
 // Repeats for pages with more than 5 top-level sections.
@@ -34,6 +35,7 @@ export default function ClientLayout({ children }) {
       {children}
       <Footer />
       <BackToTop />
+      <TawkToWidget />
     </div>
   );
 }
