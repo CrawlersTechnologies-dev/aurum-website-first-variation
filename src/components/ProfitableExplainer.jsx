@@ -6,8 +6,6 @@ import MailLink from "./MailLink";
 import "./ProfitableExplainer.css";
 
 export default function ProfitableExplainer() {
-  const [playing, setPlaying] = useState(false);
-
   return (
     <section id="how-it-works" className="section profitable">
       <div className="container">
@@ -18,46 +16,17 @@ export default function ProfitableExplainer() {
         </div>
 
         <div className="profitable__video reveal" style={{ "--reveal-delay": "80ms" }}>
-          <div className="video-card">
-            {playing ? (
-              tutorialVideo.isIframe ? (
-                <iframe
-                  className="video-card__player"
-                  src={`${tutorialVideo.src}?autoplay=1`}
-                  allow="autoplay"
-                  allowFullScreen
-                  title="Tutorial Video"
-                  style={{ border: "none" }}
-                />
-              ) : (
-                <video
-                  className="video-card__player"
-                  src={tutorialVideo.src}
-                  poster={tutorialVideo.poster}
-                  controls
-                  autoPlay
-                  playsInline
-                >
-                  Sorry, your browser doesn&apos;t support embedded videos.
-                </video>
-              )
-            ) : (
-              <div className="video-card__frame">
-                <div className="video-card__grid" />
-                <button
-                  className="video-card__play"
-                  aria-label="Play tutorial video"
-                  onClick={() => setPlaying(true)}
-                >
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-                    <path d="M8 5.5v13l11-6.5-11-6.5z" fill="#1B2360" />
-                  </svg>
-                </button>
-                <div className="video-card__meta">
-                  <span className="video-card__label">{tutorialVideo.label}</span>
-                </div>
-              </div>
-            )}
+          <div className="video-card" style={{ padding: 0, overflow: 'hidden', borderRadius: '12px' }}>
+            <video
+              className="video-card__player"
+              src="/videos/aurum-website-video.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+              style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '16/9', objectFit: 'cover' }}
+            />
           </div>
         </div>
 
