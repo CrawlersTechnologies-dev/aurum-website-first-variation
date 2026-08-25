@@ -114,7 +114,7 @@ async function handleCheckoutSessionCompleted(event) {
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   if (session.metadata?.siteOrigin && session.metadata.siteOrigin !== appUrl) {
     console.log(`[Webhook] Ignoring event from different site origin: ${session.metadata.siteOrigin}`);
-    return;
+    return Response.json({ received: true, status: "ignored_foreign_origin" });
   }
 
   const {
