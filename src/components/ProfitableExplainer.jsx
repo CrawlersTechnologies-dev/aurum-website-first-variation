@@ -19,14 +19,15 @@ export default function ProfitableExplainer() {
           <div className="video-card" style={{ padding: 0, overflow: 'hidden', borderRadius: '12px' }}>
             <video
               className="video-card__player"
-              src="/videos/aurum-website-video.mp4"
               autoPlay
               loop
               muted
               playsInline
               controls
               style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '16/9', objectFit: 'cover' }}
-            />
+            >
+              <source src="/videos/aurum-website-video.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
 

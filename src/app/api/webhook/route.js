@@ -77,6 +77,14 @@ export async function POST(request) {
     return Response.json({ received: true, status: "duplicate_ignored" });
   }
 
+  // Mark as processed IMMEDIATELY to prevent concurrent duplicate executions
+  processedEvents.add(event.id);
+  // Clean up old events (keep last 1000)
+  if (processedEvents.size > 1000) {
+    const firstKey = processedEvents.values().next().value;
+    processedEvents.delete(firstKey);
+  }
+
   console.log(`[Webhook] Event received: ${event.type} (${event.id})`);
 
   switch (event.type) {
@@ -92,14 +100,6 @@ export async function POST(request) {
       console.log(`[Webhook] Unhandled event type: ${event.type}`);
   }
 
-  // Mark as processed
-  processedEvents.add(event.id);
-  // Clean up old events (keep last 1000)
-  if (processedEvents.size > 1000) {
-    const firstKey = processedEvents.values().next().value;
-    processedEvents.delete(firstKey);
-  }
-
   return Response.json({ received: true });
 }
 
@@ -108,6 +108,12 @@ async function handleCheckoutSessionCompleted(event) {
 
   if (session.payment_status !== "paid") {
     console.log(`[Webhook] Session ${session.id} not paid yet, status: ${session.payment_status}`);
+    return;
+  }
+
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  if (session.metadata?.siteOrigin && session.metadata.siteOrigin !== appUrl) {
+    console.log(`[Webhook] Ignoring event from different site origin: ${session.metadata.siteOrigin}`);
     return;
   }
 

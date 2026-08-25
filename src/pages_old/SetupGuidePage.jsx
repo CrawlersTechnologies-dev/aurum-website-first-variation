@@ -11,14 +11,15 @@ const SetupVideoDisplay = ({ label, src }) => {
     <div className="setup-video-card" style={{ padding: 0, overflow: 'hidden', borderRadius: '12px' }}>
       <video
         className="setup-video-card__player"
-        src={src}
         autoPlay
         loop
         muted
         playsInline
         controls
         style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '16/9', objectFit: 'cover' }}
-      />
+      >
+        <source src={src} type="video/mp4" />
+      </video>
     </div>
   );
 };

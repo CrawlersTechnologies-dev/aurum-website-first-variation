@@ -219,7 +219,7 @@
   }
 
   .who-hero__title {
-    max-width: none;
+    padding-right: 90px;
   }
 }
 
