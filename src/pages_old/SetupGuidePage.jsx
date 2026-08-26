@@ -14,6 +14,7 @@ const SetupVideoDisplay = ({ label, src, poster }) => {
         muted
         playsInline
         controls
+        preload="none"
         poster={poster}
         style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '16/9', objectFit: 'cover' }}
       >
