@@ -6,16 +6,15 @@ import Image from 'next/image';
 import "./shared-page.css";
 import "./SetupGuidePage.css";
 
-const SetupVideoDisplay = ({ label, src }) => {
+const SetupVideoDisplay = ({ label, src, poster }) => {
   return (
     <div className="setup-video-card" style={{ padding: 0, overflow: 'hidden', borderRadius: '12px' }}>
       <video
         className="setup-video-card__player"
-        autoPlay
-        loop
         muted
         playsInline
         controls
+        poster={poster}
         style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '16/9', objectFit: 'cover' }}
       >
         <source src={src} type="video/mp4" />
@@ -201,7 +200,8 @@ export default function SetupGuidePage() {
               <div className="setup-step-row__media">
                 <SetupVideoDisplay
                   label="WATCH TUTORIAL: STEPS 1 - 3 (VPS & BROKER)"
-                  src="/videos/aurum-website-part-1.mp4"
+                  src="https://rc76f8rhnosfcnjb.public.blob.vercel-storage.com/Aurum%20Website%20Part%201%20Final%20.mp4"
+                  poster="/images/setup-part1-thumb.png"
                 />
               </div>
             </div>
@@ -223,7 +223,8 @@ export default function SetupGuidePage() {
               <div className="setup-step-row__media">
                 <SetupVideoDisplay
                   label="WATCH TUTORIAL: STEPS 4 - 6 (MT5 & EA INSTALLATION)"
-                  src="/videos/aurum-website-part-2.mp4"
+                  src="https://rc76f8rhnosfcnjb.public.blob.vercel-storage.com/Aurum%20Website%20Part%202%20final%20.mp4"
+                  poster="/images/setup-part2-thumb.png"
                 />
               </div>
             </div>
