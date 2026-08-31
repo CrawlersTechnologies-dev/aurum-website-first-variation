@@ -111,10 +111,9 @@ async function handleCheckoutSessionCompleted(event) {
     return;
   }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  if (session.metadata?.siteOrigin && session.metadata.siteOrigin !== appUrl) {
-    console.log(`[Webhook] Ignoring event from different site origin: ${session.metadata.siteOrigin}`);
-    return Response.json({ received: true, status: "ignored_foreign_origin" });
+  if (session.metadata?.application !== "aurum_variation_1") {
+    console.log(`[Webhook] Ignoring event for different application: ${session.metadata?.application}`);
+    return; // Exits the handler early, and POST returns 200 OK.
   }
 
   const {

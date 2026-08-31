@@ -68,7 +68,7 @@ export async function POST(request) {
         planName: plan.name,
         basePrice: String(plan.priceBase),
         currency: "USD",
-        siteOrigin: appUrl,
+        application: "aurum_variation_1",
       },
       customer_creation: "always",
     });
