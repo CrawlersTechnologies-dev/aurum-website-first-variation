@@ -1,21 +1,9 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import "./ThankYouPage.css";
-
-const countriesList = [
-  "United Arab Emirates", "Saudi Arabia", "Bahrain", "Kuwait", "Oman", "Qatar",
-  "United Kingdom", "United States", "Germany", "France", "Italy", "Spain",
-  "Australia", "Canada", "India", "Singapore", "Malaysia", "South Africa", "Other",
-];
-
-const deliveryOptions = [
-  "Email delivery",
-  "WhatsApp delivery",
-  "Both Email and WhatsApp",
-];
 
 function CheckIcon() {
   return (
@@ -38,14 +26,9 @@ function ThankYouContent() {
     fullName: "",
     email: "",
     phone: "",
-    whatsapp: "",
-    companyName: "",
-    country: "",
     selectedPlan: "",
-    softwareRequirements: "",
-    technicalRequirements: "",
-    preferredDelivery: "",
-    additionalNotes: "",
+    platform: "",
+    accountNumber: "",
   });
 
   function handleChange(e) {
@@ -56,8 +39,8 @@ function ThankYouContent() {
     e.preventDefault();
     setError("");
 
-    if (!form.fullName || !form.email) {
-      setError("Full Name and Email are required.");
+    if (!form.fullName || !form.email || !form.selectedPlan || !form.platform || !form.accountNumber) {
+      setError("Please fill out all required fields.");
       return;
     }
 
@@ -172,44 +155,6 @@ function ThankYouContent() {
                 placeholder="+1 234 567 8900"
               />
             </label>
-            <label className="ty-form__label">
-              WhatsApp Number
-              <input
-                type="tel"
-                name="whatsapp"
-                className="ty-form__input"
-                value={form.whatsapp}
-                onChange={handleChange}
-                placeholder="+1 234 567 8900"
-              />
-            </label>
-          </div>
-          <div className="ty-form__row ty-form__row--2col">
-            <label className="ty-form__label">
-              Company Name
-              <input
-                type="text"
-                name="companyName"
-                className="ty-form__input"
-                value={form.companyName}
-                onChange={handleChange}
-                placeholder="Your company (optional)"
-              />
-            </label>
-            <label className="ty-form__label">
-              Country
-              <select
-                name="country"
-                className="ty-form__input ty-form__select"
-                value={form.country}
-                onChange={handleChange}
-              >
-                <option value="">Select your country…</option>
-                {countriesList.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </select>
-            </label>
           </div>
         </div>
 
@@ -217,77 +162,56 @@ function ThankYouContent() {
           <h3 className="ty-form__section-title">Order Information</h3>
           <div className="ty-form__row ty-form__row--2col">
             <label className="ty-form__label">
-              Selected Plan
+              Selected Plan <span className="ty-form__required">*</span>
               <select
                 name="selectedPlan"
                 className="ty-form__input ty-form__select"
                 value={form.selectedPlan}
                 onChange={handleChange}
+                required
               >
-                <option value="">Select plan…</option>
+                <option value="">Select plan...</option>
                 <option value="Silver">Silver Plan</option>
                 <option value="Gold">Gold Plan</option>
                 <option value="Diamond">Diamond Plan</option>
               </select>
             </label>
             <label className="ty-form__label">
-              Preferred Delivery Method
+              Platform (MT4 / MT5) <span className="ty-form__required">*</span>
               <select
-                name="preferredDelivery"
+                name="platform"
                 className="ty-form__input ty-form__select"
-                value={form.preferredDelivery}
+                value={form.platform}
                 onChange={handleChange}
+                required
               >
-                <option value="">Select delivery method…</option>
-                {deliveryOptions.map((d) => (
-                  <option key={d} value={d}>{d}</option>
-                ))}
+                <option value="">Select platform...</option>
+                <option value="MT4">MetaTrader 4 (MT4)</option>
+                <option value="MT5">MetaTrader 5 (MT5)</option>
               </select>
             </label>
           </div>
+          <div className="ty-form__row ty-form__row--2col">
+            <label className="ty-form__label">
+              Account Number <span className="ty-form__required">*</span>
+              <input
+                type="text"
+                name="accountNumber"
+                className="ty-form__input"
+                value={form.accountNumber}
+                onChange={handleChange}
+                placeholder="Trading account number"
+                required
+              />
+            </label>
+          </div>
+          
           {sessionId && (
-            <div className="ty-form__ref-note">
+            <div className="ty-form__ref-note" style={{ marginTop: '1rem' }}>
               <span>Payment Reference:</span>
-              <code>{sessionId.slice(0, 32)}…</code>
+              <code>{sessionId.slice(0, 32)}...</code>
             </div>
           )}
-        </div>
-
-        <div className="ty-form__section">
-          <h3 className="ty-form__section-title">Requirements</h3>
-          <label className="ty-form__label">
-            Software Requirements
-            <textarea
-              name="softwareRequirements"
-              className="ty-form__input ty-form__textarea"
-              rows={4}
-              value={form.softwareRequirements}
-              onChange={handleChange}
-              placeholder="Describe any specific software requirements, MT5 account details, broker preferences…"
-            />
-          </label>
-          <label className="ty-form__label">
-            Technical Requirements
-            <textarea
-              name="technicalRequirements"
-              className="ty-form__input ty-form__textarea"
-              rows={4}
-              value={form.technicalRequirements}
-              onChange={handleChange}
-              placeholder="Describe any technical requirements, risk settings, trading preferences…"
-            />
-          </label>
-          <label className="ty-form__label">
-            Additional Notes
-            <textarea
-              name="additionalNotes"
-              className="ty-form__input ty-form__textarea"
-              rows={3}
-              value={form.additionalNotes}
-              onChange={handleChange}
-              placeholder="Anything else you'd like us to know…"
-            />
-          </label>
         </div>
 
         {error && (
@@ -301,7 +225,7 @@ function ThankYouContent() {
           className="btn btn--gold ty-form__submit"
           disabled={loading}
         >
-          {loading ? "Submitting…" : "Submit My Requirements"}
+          {loading ? "Submitting..." : "Submit My Requirements"}
         </button>
       </form>
     </>
@@ -310,7 +234,7 @@ function ThankYouContent() {
 
 export default function ThankYouClient() {
   return (
-    <Suspense fallback={<div className="ty-loading">Loading…</div>}>
+    <Suspense fallback={<div className="ty-loading">Loading...</div>}>
       <ThankYouContent />
     </Suspense>
   );

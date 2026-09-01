@@ -18,20 +18,15 @@ export async function POST(request) {
       fullName,
       email,
       phone,
-      whatsapp,
-      companyName,
-      country,
       selectedPlan,
-      softwareRequirements,
-      technicalRequirements,
-      preferredDelivery,
-      additionalNotes,
+      platform,
+      accountNumber,
     } = body;
 
     // Required field validation
-    if (!sessionId || !email || !fullName) {
+    if (!sessionId || !email || !fullName || !selectedPlan || !platform || !accountNumber) {
       return Response.json(
-        { error: "Session ID, full name, and email are required." },
+        { error: "Please fill out all required fields." },
         { status: 400 }
       );
     }
@@ -77,16 +72,11 @@ export async function POST(request) {
     const requirementData = {
       "Full Name": fullName,
       "Email": email,
-      "Phone": phone || "—",
-      "WhatsApp": whatsapp || "—",
-      "Company Name": companyName || "—",
-      "Country": country || "—",
-      "Selected Plan": selectedPlan || stripeSession?.metadata?.planName || "—",
+      "Phone": phone || "N/A",
+      "Selected Plan": selectedPlan,
+      "Platform": platform,
+      "Account Number": accountNumber,
       "Stripe Session ID": sessionId,
-      "Software Requirements": softwareRequirements || "—",
-      "Technical Requirements": technicalRequirements || "—",
-      "Preferred Delivery Method": preferredDelivery || "—",
-      "Additional Notes": additionalNotes || "—",
       "Submitted At": new Date().toISOString(),
     };
 
