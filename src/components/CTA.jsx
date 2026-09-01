@@ -21,17 +21,15 @@ export default function CTA() {
 
           <div className="cta-box cta-box--secondary" style={{ "--reveal-delay": "120ms" }}>
             <span className="cta-box__icon" aria-hidden="true">
-              <Icon name="help" size={22} strokeWidth={1.8} />
+              <Icon name="chart" size={22} strokeWidth={1.8} />
             </span>
-            {/* <span className="automation-panel__eyebrow">Talk To A Aurum</span> */}
-            <h2 className="cta-box__title">Still Confused? Let&apos;s Connect.</h2>
+            <h2 className="cta-box__title">Need Clarification? See The Results.</h2>
             <p className="cta-box__lead">
-              Not sure which plan fits you? Have a question about your broker or account size?
-              Talk to the team no sales pressure, just answers.
+              Don&apos;t just take our word for it. Explore live performance results and verified reviews from traders who are already succeeding with AURUM.
             </p>
-            <Link href="/contact" className="btn btn--outline cta-box__btn">
-              Talk To The Team
-              <Icon name="link" size={16} strokeWidth={2.2} />
+            <Link href="/results" className="btn btn--outline cta-box__btn">
+              View Verified Results
+              <Icon name="chart" size={16} strokeWidth={2.2} />
             </Link>
           </div>
         </div>
