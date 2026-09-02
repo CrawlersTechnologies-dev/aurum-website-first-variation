@@ -201,7 +201,7 @@ export default function SetupGuidePage() {
               <div className="setup-step-row__media">
                 <SetupVideoDisplay
                   label="WATCH TUTORIAL: STEPS 1 - 3 (VPS & BROKER)"
-                  src="https://rc76f8rhnosfcnjb.public.blob.vercel-storage.com/Aurum%20Website%20Part%201%20Final%20.mp4"
+                  src="https://buy.aurum-goldea.com/videos/tutorials/tutorial-1.mp4"
                   poster="/images/setup-part1-thumb.png"
                 />
               </div>
@@ -224,7 +224,7 @@ export default function SetupGuidePage() {
               <div className="setup-step-row__media">
                 <SetupVideoDisplay
                   label="WATCH TUTORIAL: STEPS 4 - 6 (MT5 & EA INSTALLATION)"
-                  src="https://rc76f8rhnosfcnjb.public.blob.vercel-storage.com/Aurum%20Website%20Part%202%20final%20.mp4"
+                  src="https://buy.aurum-goldea.com/videos/tutorials/tutorial-2.mp4"
                   poster="/images/setup-part2-thumb.png"
                 />
               </div>

@@ -26,7 +26,7 @@ export default function ProfitableExplainer() {
               preload="auto"
               style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '16/9', objectFit: 'cover' }}
             >
-              <source src="https://rc76f8rhnosfcnjb.public.blob.vercel-storage.com/Aurum%20Website%20Video.mp4" type="video/mp4" />
+              <source src="https://buy.aurum-goldea.com/videos/home.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
