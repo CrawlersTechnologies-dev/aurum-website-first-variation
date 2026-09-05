@@ -55,7 +55,7 @@ export default function AboutPage() {
   return (
     <main>
       <PageHero
-        eyebrow="About AURUM"
+        eyebrow="About AURUM GOLD EA"
         title="Built by Traders. Backed by Experience."
         lead="AURUM was built by a team of experienced traders who understand the real challenges of trading. With over 20 years of experience across banking, hedge funds, quantitative research, and financial markets, our team has seen what makes traders successful.We learned that long-term success is not just about having a good strategy it's about following it with discipline. That's why AURUM was created to help traders execute their strategy with consistency, confidence, and without emotional decisions."
       />
@@ -117,7 +117,7 @@ export default function AboutPage() {
               <div className="founder-card__photo-wrap">
                 <img
                   src={founderProfile.image}
-                  alt="Nikhil Malhotra Co-Founder AURUM EA Moneytize Trading Academy Dubai"
+                  alt="Nikhil Malhotra Co-Founder AURUM GOLD EA Moneytize Trading Academy Dubai"
                   className="founder-card__photo"
                 />
               </div>
